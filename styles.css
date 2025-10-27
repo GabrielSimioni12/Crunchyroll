@@ -1,0 +1,17 @@
+:root {
+    --primary-color: #ffffff;
+    --crunchyroll-color: #ff640a;
+    --background-color: #23252b;;
+    --font-family: Lato, Helvetica Neue, helvetica, sans-serif;
+    
+    
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--primary-color);
+}
