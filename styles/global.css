@@ -1,0 +1,54 @@
+/* -----------------------------
+    🌐 Variáveis Globais
+----------------------------- */
+:root {
+    /* Cores */
+    --color-primary: #f47521;
+    --color-primary-hover: #ff7f32;
+    --color-bg-dark: #1a1a1a;
+    --color-bg-dark-light: #242424; /* Um tom um pouco mais claro para fundos secundários */
+    --color-bg-input: #2a2a2a;
+    --color-bg-input-focus: #333;
+    --color-text-light: #f9f9f9;
+    --color-text-muted: #ccc;
+    --color-text-link: var(--color-primary);
+    --color-text-link-hover: var(--color-primary-hover);
+    
+    /* Tipografia */
+    --font-main: 'Lato', 'Helvetica Neue', helvetica, sans-serif;
+    --font-size-base: 1rem;
+    --font-size-sm: 0.875rem; /* Para descrições e textos menores */
+    --font-size-lg: 1.25rem; /* Para títulos de seção */
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+
+    /* Espaçamento e Dimensões (Baseado em uma escala de 8px) */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-xxl: 48px;
+    --header-height: 60px; /* Altura comum para o cabeçalho de navegação */
+    --max-content-width: 1400px; /* Largura máxima para o conteúdo principal */
+    
+    /* Bordas e Efeitos */
+    --radius: 8px;
+    --radius-sm: 4px; /* Para botões e elementos menores */
+    --shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    --transition: 0.3s ease;
+    
+    /* Camadas (Z-Index) */
+    --z-index-base: 1;
+    --z-index-header: 100; /* Para cabeçalhos fixos */
+    --z-index-modal: 1000; /* Para modais e popups (como o de login) */
+}
+
+/* -----------------------------
+    🔄 Classes Utilidades (Opcional, mas útil)
+----------------------------- */
+.container {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}

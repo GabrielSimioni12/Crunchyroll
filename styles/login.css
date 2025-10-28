@@ -1,41 +1,13 @@
-/* -----------------------------
-   🌐 Variáveis Globais
------------------------------ */
-:root {
-  --color-primary: #f47521;
-  --color-primary-hover: #ff7f32;
-  --color-bg-dark: #1a1a1a;
-  --color-bg-input: #2a2a2a;
-  --color-bg-input-focus: #333;
-  --color-text-light: #f9f9f9;
-  --color-text-muted: #ccc;
+@import url(./global.css);
 
-  --radius: 8px;
-  --shadow: 0 0 25px rgba(0, 0, 0, 0.5);
 
-  --transition: 0.3s ease;
-  --font-main: 'Lato', 'Helvetica Neue', helvetica, sans-serif;
-}
-
-/* -----------------------------
-   🔄 Reset básico
------------------------------ */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: var(--font-main);
-}
-
-/* -----------------------------
-   🖼️ Fundo / layout geral
------------------------------ */
 body {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url('../img/back-crunch2.jpg') no-repeat center center/cover;
+  background: url('../img/back-crunch.jpg') no-repeat center center/cover;
+  backdrop-filter: blur(1px)
 }
 
 .login-container {
