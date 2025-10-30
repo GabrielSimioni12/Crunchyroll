@@ -1,1 +1,209 @@
- --font-family: Lato, Helvetica Neue, helvetica, sans-serif;
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | Crunchyroll Clone</title>
+    
+    <link rel="stylesheet" href="../styles/global.css">
+    
+    <link rel="stylesheet" href="../styles/home.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <header class="navbar">
+        <div class="container">
+            <span class="logo">CRUNCHYROLL</span>
+            <nav class="nav-links">
+                <a href="#" class="active">Início</a>
+                <a href="#">Simulcasts</a>
+                <a href="#">Populares</a>
+                <a href="#">Minha Lista</a>
+            </nav>
+            <div class="user-actions">
+                <button class="search-btn">🔍</button>
+                <a href="#" class="profile-btn">👤</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="catalog-content">
+        
+        <section class="hero-carousel">
+            <div class="carousel-track-container">
+                <ul class="carousel-track">
+                    
+                    <li class="carousel-slide current-slide">
+                        <div class="slide-content" style="background-image: url('../img/hero_slide_1.jpg');">
+                            <div class="slide-overlay"></div>
+                            <div class="slide-text">
+                                <h2>Jujutsu Kaisen Temporada 2</h2>
+                                <p>Os feiticeiros Jujutsu estão de volta para proteger a humanidade de maldições terríveis.</p>
+                                <div class="button-group">
+                                    <a href="#" class="btn btn-primary">Assistir Agora</a>
+                                    <a href="#" class="btn btn-secondary">Detalhes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="carousel-slide">
+                        <div class="slide-content" style="background-image: url('../img/hero_slide_2.jpg');">
+                            <div class="slide-overlay"></div>
+                            <div class="slide-text">
+                                <h2>Solo Leveling</h2>
+                                <p>O caçador mais fraco do mundo ganha um poder misterioso e começa sua jornada.</p>
+                                <div class="button-group">
+                                    <a href="#" class="btn btn-primary">Assistir Agora</a>
+                                    <a href="#" class="btn btn-secondary">Detalhes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="carousel-slide">
+                        <div class="slide-content" style="background-image: url('../img/hero_slide_3.jpg');">
+                            <div class="slide-overlay"></div>
+                            <div class="slide-text">
+                                <h2>Frieren e a Jornada para o Além</h2>
+                                <p>Uma maga elfa embarca em uma jornada para entender o significado da vida e da morte.</p>
+                                <div class="button-group">
+                                    <a href="#" class="btn btn-primary">Assistir Agora</a>
+                                    <a href="#" class="btn btn-secondary">Detalhes</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <button class="carousel-button prev">❮</button>
+            <button class="carousel-button next">❯</button>
+
+            <div class="carousel-nav">
+                <button class="carousel-indicator current-slide"></button>
+                <button class="carousel-indicator"></button>
+                <button class="carousel-indicator"></button>
+            </div>
+        </section>
+
+        <section class="anime-list-section">
+            <h2>🔥 Novos Simulcasts</h2>
+            <div class="carousel-container">
+                
+                <a href="#" class="anime-card">
+                    <div class="card-image-wrapper">
+                        <img src="../img/anime_cover_1.jpg" alt="Título 1" class="anime-cover">
+                        <div class="premium-badge">👑 Premium</div>
+                        <div class="ep-count">36 EP</div>
+                    </div>
+                    <div class="card-title">Título Incrível do Anime #1</div>
+                </a>
+                
+                <a href="#" class="anime-card">
+                    <div class="card-image-wrapper">
+                        <img src="../img/anime_cover_2.jpg" alt="Título 2" class="anime-cover">
+                        <div class="ep-count">12 EP</div>
+                    </div>
+                    <div class="card-title">Aventura Épica do Novo Mundo</div>
+                </a>
+
+                <a href="#" class="anime-card">
+                    <div class="card-image-wrapper">
+                        <img src="../img/anime_cover_3.jpg" alt="Título 3" class="anime-cover">
+                        <div class="premium-badge">👑 Premium</div>
+                        <div class="ep-count">24 EP</div>
+                    </div>
+                    <div class="card-title">Mistério e Magia: A Saga Final</div>
+                </a>
+
+                <a href="#" class="anime-card">
+                    <div class="card-image-wrapper">
+                        <img src="../img/anime_cover_4.jpg" alt="Título 4" class="anime-cover">
+                        <div class="ep-count">18 EP</div>
+                    </div>
+                    <div class="card-title">Vida Escolar e Comédia Maluca</div>
+                </a>
+
+                <a href="#" class="anime-card">
+                    <div class="card-image-wrapper">
+                        <img src="../img/anime_cover_5.jpg" alt="Título 5" class="anime-cover">
+                        <div class="ep-count">47 EP</div>
+                    </div>
+                    <div class="card-title">Robôs Gigantes e Destino da Humanidade</div>
+                </a>
+                
+                <a href="#" class="anime-card">
+                    <div class="card-image-wrapper">
+                        <img src="../img/anime_cover_6.jpg" alt="Título 6" class="anime-cover">
+                        <div class="ep-count">13 EP</div>
+                    </div>
+                    <div class="card-title">O Conto da Princesa Perdida</div>
+                </a>
+            </div>
+        </section>
+        
+        <section class="anime-list-section">
+            <h2>⭐ Mais Populares</h2>
+            <div class="carousel-container">
+                
+                 <a href="#" class="anime-card">
+                    <div class="card-image-wrapper">
+                        <img src="../img/anime_cover_2.jpg" alt="Título A" class="anime-cover">
+                        <div class="premium-badge">👑 Premium</div>
+                        <div class="ep-count">100+ EP</div>
+                    </div>
+                    <div class="card-title">Super Herói em Treinamento</div>
+                </a>
+
+                <a href="#" class="anime-card">
+                    <div class="card-image-wrapper">
+                        <img src="../img/anime_cover_4.jpg" alt="Título B" class="anime-cover">
+                        <div class="ep-count">25 EP</div>
+                    </div>
+                    <div class="card-title">Guerreiros Lendários do Tempo</div>
+                </a>
+
+                <a href="#" class="anime-card">
+                    <div class="card-image-wrapper">
+                        <img src="../img/anime_cover_1.jpg" alt="Título C" class="anime-cover">
+                        <div class="ep-count">7 EP</div>
+                    </div>
+                    <div class="card-title">Nova Temporada de Ação</div>
+                </a>
+
+                <a href="#" class="anime-card">
+                    <div class="card-image-wrapper">
+                        <img src="../img/anime_cover_6.jpg" alt="Título D" class="anime-cover">
+                        <div class="premium-badge">👑 Premium</div>
+                        <div class="ep-count">48 EP</div>
+                    </div>
+                    <div class="card-title">Drama Psicológico Intenso</div>
+                </a>
+                
+                <a href="#" class="anime-card">
+                    <div class="card-image-wrapper">
+                        <img src="../img/anime_cover_5.jpg" alt="Título E" class="anime-cover">
+                        <div class="ep-count">15 EP</div>
+                    </div>
+                    <div class="card-title">Slice of Life Perfeito</div>
+                </a>
+
+                <a href="#" class="anime-card">
+                    <div class="card-image-wrapper">
+                        <img src="../img/anime_cover_3.jpg" alt="Título F" class="anime-cover">
+                        <div class="ep-count">9 EP</div>
+                    </div>
+                    <div class="card-title">Retorno da Lenda Esportiva</div>
+                </a>
+            </div>
+        </section>
+        
+    </main>
+    
+    <script src="../js/home.js"></script>
+    
+</body>
+</html>
