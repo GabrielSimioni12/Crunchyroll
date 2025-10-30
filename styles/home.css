@@ -389,3 +389,157 @@ body {
         width: 80%;
     }
 }
+
+
+/* -----------------------------
+    Rodapé (Footer)
+----------------------------- */
+.footer {
+    width: 100%;
+    background-color: var(--color-bg-dark); /* Fundo muito escuro */
+    padding: var(--space-xl) var(--space-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Linha divisória sutil */
+    color: var(--color-text-muted);
+}
+
+.footer-container {
+    max-width: var(--max-content-width);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-lg);
+}
+
+.footer-column {
+    flex: 1; /* Distribui o espaço entre as colunas */
+    min-width: 150px;
+}
+
+.footer-logo {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -1px;
+    display: block;
+    margin-bottom: var(--space-md);
+}
+
+.footer h3 {
+    font-size: 1rem;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-md);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: var(--space-sm);
+}
+
+.footer ul li a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.footer ul li a:hover {
+    color: var(--color-primary); /* Destaque laranja ao passar o mouse */
+}
+
+.copyright {
+    font-size: 0.8rem;
+    margin-bottom: var(--space-md);
+}
+
+/* Links Sociais */
+.social-links a {
+    color: var(--color-text-muted);
+    font-size: 1.5rem;
+    margin-right: var(--space-md);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--color-text-light);
+}
+
+/* Responsividade do Rodapé */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-wrap: wrap; /* Colunas quebram para a próxima linha */
+        justify-content: flex-start;
+    }
+
+    .footer-column {
+        min-width: 45%; /* Garante duas colunas por linha em telas médias */
+        margin-bottom: var(--space-lg);
+    }
+    
+    .footer-column:first-child {
+        min-width: 100%; /* A primeira coluna (logo) ocupa a linha inteira */
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-column {
+        min-width: 100%; /* Cada coluna ocupa uma linha inteira em mobile */
+    }
+}
+
+/* -----------------------------
+    Busca na Navbar (Atualizado)
+----------------------------- */
+.search-toggle-btn {
+    /* Estilo para o ícone de lupa que sempre aparece */
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: var(--space-sm);
+    padding: var(--space-sm);
+    transition: var(--transition);
+}
+
+.search-toggle-btn:hover {
+    color: var(--color-primary);
+}
+
+.search-box {
+    /* Configuração inicial: escondida */
+    width: 0;
+    overflow: hidden;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    
+    /* Estilo do input (para não quebrar a linha) */
+    display: flex; 
+    align-items: center;
+    
+    background-color: transparent;
+    border-radius: var(--radius-sm);
+}
+
+.search-box.active {
+    width: 200px; /* Tamanho que a caixa se expande */
+    padding: 0 var(--space-sm);
+    background-color: rgba(255, 255, 255, 0.1);
+    margin-right: var(--space-sm);
+    border: 1px solid var(--color-primary);
+}
+
+.search-input {
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    font-size: 1rem;
+    padding: var(--space-sm) 0;
+    width: 100%;
+    outline: none;
+}
