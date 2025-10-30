@@ -494,52 +494,149 @@ body {
 }
 
 /* -----------------------------
-    Busca na Navbar (Atualizado)
+   Navbar Container
 ----------------------------- */
-.search-toggle-btn {
-    /* Estilo para o ícone de lupa que sempre aparece */
-    background: none;
-    border: none;
-    color: var(--color-text-light);
-    font-size: 1rem;
-    cursor: pointer;
-    margin-right: var(--space-sm);
-    padding: var(--space-sm);
-    transition: var(--transition);
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #111;
+  padding: 0.8rem 2rem; /* 🔧 aumentei um pouco o padding geral */
 }
 
-.search-toggle-btn:hover {
-    color: var(--color-primary);
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px; /* 🔥 limita o conteúdo para não grudar nas bordas */
+  margin: 0 auto;
 }
 
+/* -----------------------------
+   Logo
+----------------------------- */
+.logo {
+  color: var(--color-primary, #f47521);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* -----------------------------
+   Links de Navegação
+----------------------------- */
+.nav-links {
+  display: flex;
+  gap: 1.8rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ddd;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--color-primary, #f47521);
+}
+
+.nav-links a.active {
+  border-bottom: 2px solid var(--color-primary, #f47521);
+  padding-bottom: 2px;
+}
+
+/* -----------------------------
+   Ações do Usuário (ícones + busca)
+----------------------------- */
+.user-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  position: relative;
+  margin-left: 1.5rem; /* 🔥 aproxima os ícones do centro */
+}
+
+/* Ícones */
+.user-actions button,
+.user-actions a {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.05rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  transition: transform 0.2s ease;
+}
+
+.user-actions i {
+  transition: color 0.25s ease, transform 0.2s ease;
+}
+
+.user-actions i:hover {
+  color: var(--color-primary, #f47521);
+  transform: scale(1.15);
+}
+
+/* -----------------------------
+   Barra de Pesquisa (expandível + fade suave)
+----------------------------- */
 .search-box {
-    /* Configuração inicial: escondida */
-    width: 0;
-    overflow: hidden;
-    transition: width 0.3s ease, background-color 0.3s ease;
-    
-    /* Estilo do input (para não quebrar a linha) */
-    display: flex; 
-    align-items: center;
-    
-    background-color: transparent;
-    border-radius: var(--radius-sm);
+  width: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  transition:
+    width 0.4s ease,
+    padding 0.4s ease,
+    border-color 0.4s ease,
+    background-color 0.4s ease,
+    opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 6px;
+  position: relative;
 }
 
 .search-box.active {
-    width: 200px; /* Tamanho que a caixa se expande */
-    padding: 0 var(--space-sm);
-    background-color: rgba(255, 255, 255, 0.1);
-    margin-right: var(--space-sm);
-    border: 1px solid var(--color-primary);
+  width: 180px;
+  padding: 0 0.4rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: var(--color-primary, #f47521);
+  opacity: 1;
+  box-shadow: 0 0 8px rgba(244, 117, 33, 0.4);
 }
 
 .search-input {
-    background: none;
-    border: none;
-    color: var(--color-text-light);
-    font-size: 1rem;
-    padding: var(--space-sm) 0;
-    width: 100%;
-    outline: none;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 0.95rem;
+  width: 100%;
+  outline: none;
+  padding: 0.35rem 0;
+  transition: opacity 0.3s ease;
 }
+
+.search-box:not(.active) .search-input {
+  opacity: 0;
+}
+
+.nav-icons i {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.nav-icons i:hover {
+  transform: scale(1.15);
+  color: var(--color-primary);
+}
+
+
