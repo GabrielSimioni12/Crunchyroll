@@ -196,42 +196,37 @@ body {
 /* -----------------------------
     Hero Carousel (Carrossel de Destaque)
 ----------------------------- */
+
 .hero-carousel {
     position: relative;
-    width: 100%;
-    height: 70vh; /* Altura do carrossel (ajuste conforme preferir) */
-    overflow: hidden; /* Esconde os slides que não estão ativos */
-    margin-bottom: var(--space-xl);
+    overflow: hidden; /* Esconde slides fora de vista */
 }
 
 .carousel-track-container {
-    width: 100%;
-    height: 100%;
-    position: relative;
+    overflow: hidden;
 }
 
 .carousel-track {
+    list-style: none;
     padding: 0;
     margin: 0;
-    list-style: none;
-    position: relative;
-    height: 100%;
-    transition: transform 0.5s ease-in-out; /* Transição para o movimento dos slides */
+    
+    /* CHAVE 1: Configura o contêiner para ser horizontal e não quebrar linha */
+    display: flex; 
+    
+    /* CHAVE 2: Aplica a transição para a animação de movimento */
+    transition: transform 0.5s ease-in-out; 
 }
 
 .carousel-slide {
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    /* CHAVE 3: Garante que cada slide ocupe 100% da largura do contêiner */
+    min-width: 100%; 
     width: 100%;
-    opacity: 0; /* Por padrão, todos os slides são invisíveis */
-    transition: opacity 0.5s ease-in-out;
+    
+    /* Se você for usar 'fade' em vez de slide, pode usar position: absolute aqui. 
+       Para 'slide', mantenha como está. */
 }
 
-.carousel-slide.current-slide {
-    opacity: 1; /* O slide ativo é visível */
-    position: static; /* Para o JS controlar a posição na track */
-}
 
 
 .slide-content {
@@ -639,4 +634,192 @@ body {
   color: var(--color-primary);
 }
 
+/* -----------------------------
+    Carrosséis de Listas de Animes (Rolagem Horizontal)
+----------------------------- */
 
+.list-carousel-wrapper {
+    position: relative; /* Essencial para posicionar os botões de navegação */
+}
+
+.carousel-container {
+    /* CHAVES para a rolagem horizontal */
+    display: flex;
+    overflow-x: scroll; /* Permite rolar horizontalmente */
+    scroll-snap-type: x mandatory; /* Faz a rolagem "parar" no início de cada card */
+    scroll-behavior: smooth; /* Para a animação suave no clique dos botões */
+    
+    /* Preenchimento para garantir que o primeiro/último card não cole na borda */
+    padding-bottom: 20px; 
+    
+    /* Esconde a barra de rolagem (padrão em UIs modernas) */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Esconde a barra de rolagem para navegadores Webkit (Chrome, Safari) */
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.anime-card {
+    flex-shrink: 0; /* Impede que o card encolha */
+    width: 200px; /* Largura fixa do card (ajuste se necessário) */
+    margin-right: 16px; /* Espaçamento entre os cards */
+    scroll-snap-align: start; /* Alinha o início do card ao parar a rolagem */
+    transition: transform 0.2s;
+}
+
+/* Estilo e posicionamento dos botões de navegação */
+.list-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 14px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.2rem;
+    line-height: 1;
+    opacity: 0; /* Começa invisível */
+    transition: opacity 0.3s;
+}
+
+/* Os botões aparecem apenas quando o mouse está sobre o wrapper */
+.list-carousel-wrapper:hover .list-carousel-btn {
+    opacity: 1;
+}
+
+.list-carousel-btn.prev {
+    left: 0;
+}
+
+.list-carousel-btn.next {
+    right: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ========================================
+    RESPONSIVIDADE (MEDIA QUERIES)
+======================================== */
+
+@media (max-width: 768px) {
+    /* --- ESTRUTURA GERAL --- */
+    .container {
+        padding: 0 15px; /* Reduz o padding lateral em telas menores */
+    }
+
+    /* --- 1. NAVBAR (Cabeçalho) --- */
+    .navbar .container {
+        justify-content: space-between;
+        padding: 0 15px;
+    }
+    .navbar .nav-links {
+        display: none; /* Esconde links principais no mobile */
+    }
+    .navbar .logo {
+        font-size: 1.5rem; /* Reduz o tamanho do logo */
+    }
+    .navbar .user-actions {
+        /* A busca e o perfil permanecem, os links de navegação somem */
+        gap: 10px;
+    }
+    
+    /* Posicionamento da caixa de busca no mobile */
+    .search-box {
+        position: absolute; 
+        top: 60px; /* Abaixo do header */
+        left: 0;
+        width: 100%;
+        padding: 0 15px;
+        background-color: var(--color-background-dark);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        z-index: 100;
+    }
+    .search-box .search-input {
+        width: 100%;
+        border-radius: 4px;
+        padding: 10px;
+    }
+
+    /* --- 2. CARROSSEL PRINCIPAL (Hero) --- */
+    .hero-carousel {
+        height: 50vh; /* Altura menor para o carrossel no mobile */
+    }
+    .slide-content {
+        /* Move o conteúdo para a parte inferior da tela */
+        justify-content: flex-end; 
+    }
+    .slide-text {
+        padding: 20px 20px 40px;
+        width: 100%;
+        max-width: none;
+        /* Reforça o gradiente na parte inferior para a leitura */
+        background: linear-gradient(to top, var(--color-background-dark) 0%, transparent 100%); 
+    }
+    .slide-text h2 {
+        font-size: 1.8rem;
+    }
+    .slide-text p {
+        display: none; /* Esconde a descrição longa no mobile */
+    }
+    .button-group {
+        gap: 10px;
+    }
+    .button-group a.btn {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    /* Esconde as setas grandes do carrossel Hero no mobile */
+    .hero-carousel .carousel-button {
+        display: none; 
+    }
+    
+    /* --- 3. CARROSSÉIS DE LISTA (Novos Simulcasts, Populares) --- */
+    .anime-list-section h2 {
+        font-size: 1.4rem;
+        padding-left: 15px; /* Alinha o título com o padding lateral da tela */
+    }
+    .carousel-container {
+        /* Garante que a rolagem comece na borda da tela */
+        padding-left: 15px; 
+        padding-right: 15px;
+    }
+    .anime-card {
+        width: 120px; /* Cards menores para caber mais na tela do celular */
+        margin-right: 10px;
+    }
+    .anime-card .card-title {
+        font-size: 0.75rem;
+    }
+    
+    /* Esconde os botões de navegação das listas no mobile (usuário usa o toque para rolar) */
+    .list-carousel-btn {
+        display: none; 
+    }
+
+    /* --- 4. FOOTER --- */
+    .footer-container {
+        flex-direction: column; /* Coloca as colunas em pilha vertical */
+        text-align: center;
+    }
+    .footer-column {
+        margin-bottom: 30px;
+    }
+    .footer-column ul {
+        padding: 0;
+    }
+}
