@@ -1,31 +1,64 @@
+/* ================================================================
+    VARIÁVEIS GLOBAIS E REGRAS BASE (Assumindo que estão em outro arquivo, mas redefinidas para clareza)
+================================================================ */
+:root {
+    --color-primary: #f47521; /* Laranja da Crunchyroll */
+    --color-bg-dark: #1a1a1a; /* Fundo principal muito escuro */
+    --color-text-light: #ffffff;
+    --color-text-muted: #aaaaaa;
+    
+    --header-height: 60px;
+    --max-content-width: 1200px;
+
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 40px;
+    --space-xxl: 80px;
+
+    --font-size-base: 1rem;
+    --font-size-lg: 1.5rem;
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+
+    --radius-sm: 4px;
+    --transition: all 0.2s ease-in-out;
+
+    --z-index-base: 10;
+    --z-index-header: 100;
+    --z-index-modal: 200;
+}
+
 /* -----------------------------
     Estrutura Geral do Catálogo
 ----------------------------- */
 body {
-    background-color: var(--color-bg-dark); /* Fundo escuro para o tema de streaming */
+    background-color: var(--color-bg-dark);
     color: var(--color-text-light);
     min-height: 100vh;
-    padding-top: var(--header-height); /* Espaço para a navbar fixa */
+    padding-top: var(--header-height);
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
 }
 
 .catalog-content {
-    /* Centraliza o conteúdo com a largura máxima definida no global.css */
     max-width: var(--max-content-width);
     margin: 0 auto;
-    padding: var(--space-lg) 0; /* Espaçamento vertical grande */
+    padding: var(--space-lg) 0;
 }
 
 /* Títulos das Seções */
 .anime-list-section h2 {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-bold);
-    margin: var(--space-xl) var(--space-lg) var(--space-md); /* Espaçamento dos lados */
-    border-left: 4px solid var(--color-primary); /* Detalhe visual da Crunchyroll */
+    margin: var(--space-xl) var(--space-lg) var(--space-md);
+    border-left: 4px solid var(--color-primary);
     padding-left: var(--space-sm);
 }
 
 /* -----------------------------
-    Navbar (Cabeçalho Fixo)
+    1. NAVBAR (Cabeçalho Fixo)
 ----------------------------- */
 .navbar {
     position: fixed;
@@ -33,10 +66,14 @@ body {
     left: 0;
     width: 100%;
     height: var(--header-height);
-    background-color: rgba(26, 26, 26, 0.95); /* Quase preto com leve transparência */
+    background-color: rgba(26, 26, 26, 0.95);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    z-index: var(--z-index-header); /* Garante que fique acima de tudo */
-    backdrop-filter: blur(5px); /* Efeito de vidro para a barra flutuante */
+    z-index: var(--z-index-header);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
 }
 
 .navbar .container {
@@ -57,149 +94,206 @@ body {
 }
 
 /* Links de Navegação */
+.nav-links {
+    display: flex;
+    gap: 1.8rem;
+}
+
 .nav-links a {
     color: var(--color-text-muted);
     text-decoration: none;
     font-weight: var(--font-weight-regular);
-    margin-right: var(--space-md);
     padding: 5px 0;
     transition: var(--transition);
+    font-size: 0.95rem;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--color-text-light);
     border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 2px;
 }
 
-/* Ações do Usuário */
+/* Ações do Usuário (Ícones e Botões) */
+.user-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    position: relative;
+    margin-left: var(--space-lg);
+}
+
 .user-actions button,
 .user-actions a {
     background: none;
     border: none;
     color: var(--color-text-light);
-    font-size: 1rem;
+    font-size: 1.05rem;
     cursor: pointer;
-    margin-left: var(--space-sm);
-    padding: var(--space-sm);
     text-decoration: none;
     transition: var(--transition);
-}
-
-.user-actions button:hover,
-.user-actions a:hover {
-    color: var(--color-primary);
-}
-
-/* -----------------------------
-    Cards de Anime
------------------------------ */
-.carousel-container {
-    /* Permite o scroll horizontal e esconde a barra */
+    height: 32px;
+    width: 32px;
     display: flex;
-    overflow-x: scroll;
-    padding: var(--space-md) var(--space-lg);
-    gap: var(--space-md);
-    
-    /* Estilo de scrollbar invisível (Chromium/Edge) */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    /* Adiciona uma sombra para criar a ilusão de que o conteúdo continua */
-    mask-image: linear-gradient(to right, transparent, black var(--space-lg), black calc(100% - var(--space-lg)), transparent);
+    align-items: center;
+    justify-content: center;
 }
 
-.carousel-container::-webkit-scrollbar {
+.user-actions i {
+    transition: color 0.25s ease, transform 0.2s ease;
+}
+
+.user-actions button:hover i,
+.user-actions a:hover i {
+    color: var(--color-primary);
+    transform: scale(1.15);
+}
+
+/* Botão de Menu (Sanduíche) - Escondido no Desktop */
+.menu-toggle-btn {
     display: none;
 }
 
-.anime-card {
-    /* Dimensões do card */
-    flex-shrink: 0; /* Não permite que o card diminua */
-    width: 200px; 
-    text-decoration: none;
-    color: var(--color-text-light);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-}
 
-.anime-card:hover {
-    transform: scale(1.05); /* Efeito "vivo" ao passar o mouse */
-    z-index: 10;
-    box-shadow: 0 10px 25px rgba(244, 117, 33, 0.5); /* Sombra laranja de destaque */
-}
-
-.card-image-wrapper {
-    position: relative;
+/* -----------------------------
+    2. BARRA DE BUSCA (Desktop)
+----------------------------- */
+.search-box {
+    width: 0;
     overflow: hidden;
+    opacity: 0;
+    padding: 0;
+    border: 1px solid transparent;
+    transition:
+        width 0.4s ease,
+        padding 0.4s ease,
+        border-color 0.4s ease,
+        opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
     border-radius: var(--radius-sm);
-    margin-bottom: var(--space-sm);
-    /* Borda sutil para o card */
-    border: 1px solid rgba(255, 255, 255, 0.1); 
+    position: relative;
 }
 
-.anime-cover {
-    width: 100%;
-    height: 300px; /* Altura fixa para as capas */
-    object-fit: cover;
-    display: block;
-    transition: filter 0.3s ease;
+.search-box.active {
+    width: 180px;
+    padding: 0 var(--space-sm);
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--color-primary);
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(244, 117, 33, 0.4);
 }
 
-.anime-card:hover .anime-cover {
-    filter: brightness(1.1); /* Brilho leve ao passar o mouse */
-}
-
-.card-title {
-    font-size: var(--font-size-base);
-    font-weight: var(--font-weight-regular);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; /* ... no final do título longo */
-    padding: 0 2px;
-}
-
-/* Detalhes (Badges) */
-.premium-badge, .ep-count {
-    position: absolute;
-    font-size: 0.7rem;
-    padding: 4px 8px;
-    font-weight: var(--font-weight-bold);
-    border-radius: 0 0 var(--radius-sm) 0;
-}
-
-.premium-badge {
-    top: 0;
-    left: 0;
-    background-color: var(--color-primary); /* Laranja Crunchyroll */
-    color: var(--color-bg-dark);
-}
-
-.ep-count {
-    bottom: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro para contraste */
+.search-input {
+    background: none;
+    border: none;
     color: var(--color-text-light);
-    border-radius: var(--radius-sm) 0 0 0;
+    font-size: 0.95rem;
+    width: 100%;
+    outline: none;
+    padding: 0.35rem 0;
+    transition: opacity 0.3s ease;
 }
 
-/* Responsividade para telas menores (menor width do card) */
-@media (max-width: 768px) {
-    .anime-card {
-        width: 150px; /* Cards menores em mobile */
-    }
-    .anime-cover {
-        height: 225px; /* Altura proporcional */
-    }
+.search-box:not(.active) .search-input {
+    opacity: 0;
 }
 
 
 /* -----------------------------
-    Hero Carousel (Carrossel de Destaque)
+    3. SIDEBAR (Menu Lateral Mobile)
 ----------------------------- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100%;
+    background-color: var(--color-bg-dark); 
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.8);
+    z-index: var(--z-index-modal);
+    padding: var(--space-lg);
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%); /* Esconde inicialmente */
+    display: flex;
+    flex-direction: column;
+}
 
+/* Estado Ativo: Visível na tela */
+.sidebar.active {
+    transform: translateX(0);
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: calc(var(--z-index-modal) - 1);
+    display: none; /* Esconde inicialmente */
+}
+
+.sidebar-logo {
+    font-size: 1.8rem;
+    margin-bottom: var(--space-md);
+}
+
+.close-sidebar-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.sidebar-nav-links {
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-xl);
+    flex-grow: 1;
+}
+
+.sidebar-nav-links li a {
+    display: block;
+    color: var(--color-text-muted);
+    padding: 15px 0;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: color 0.2s ease;
+}
+
+.sidebar-nav-links li a:hover,
+.sidebar-nav-links li a.active {
+    color: var(--color-primary);
+}
+
+.sidebar-footer {
+    padding-top: var(--space-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-footer .btn-full-width {
+    width: 100%;
+}
+
+
+/* -----------------------------
+    4. HERO CAROUSEL (Carrossel de Destaque)
+----------------------------- */
 .hero-carousel {
     position: relative;
-    overflow: hidden; /* Esconde slides fora de vista */
+    overflow: hidden;
+    /* Ajuste para altura padrão no desktop */
+    height: 60vh; 
 }
 
 .carousel-track-container {
@@ -210,24 +304,14 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
-    
-    /* CHAVE 1: Configura o contêiner para ser horizontal e não quebrar linha */
     display: flex; 
-    
-    /* CHAVE 2: Aplica a transição para a animação de movimento */
     transition: transform 0.5s ease-in-out; 
 }
 
 .carousel-slide {
-    /* CHAVE 3: Garante que cada slide ocupe 100% da largura do contêiner */
     min-width: 100%; 
     width: 100%;
-    
-    /* Se você for usar 'fade' em vez de slide, pode usar position: absolute aqui. 
-       Para 'slide', mantenha como está. */
 }
-
-
 
 .slide-content {
     width: 100%;
@@ -235,9 +319,9 @@ body {
     background-size: cover;
     background-position: center;
     display: flex;
-    align-items: center; /* Centraliza verticalmente o conteúdo */
+    align-items: center;
     padding: var(--space-xxl);
-    position: relative; /* Para a sobreposição funcionar */
+    position: relative;
 }
 
 .slide-overlay {
@@ -246,12 +330,11 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Gradiente mais forte para o texto se destacar */
     background: linear-gradient(to right, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 40%, rgba(0, 0, 0, 0.1) 70%, transparent 100%);
 }
 
 .slide-text {
-    position: relative; /* Acima do overlay */
+    position: relative;
     z-index: var(--z-index-base);
     max-width: 600px;
     text-align: left;
@@ -286,7 +369,7 @@ body {
     padding: var(--space-md);
     font-size: 1.5rem;
     cursor: pointer;
-    z-index: var(--z-index-header); /* Acima do slide */
+    z-index: var(--z-index-header);
     border-radius: var(--radius-sm);
     transition: background-color 0.3s ease;
 }
@@ -330,70 +413,142 @@ body {
     transform: scale(1.2);
 }
 
-/* Responsividade do Carrossel de Destaque */
-@media (max-width: 768px) {
-    .hero-carousel {
-        height: 50vh;
-    }
-    .slide-content {
-        padding: var(--space-lg);
-        background-position: 70% center; /* Ajusta o foco da imagem em telas menores */
-    }
-    .slide-text h2 {
-        font-size: 2rem;
-    }
-    .slide-text p {
-        font-size: var(--font-size-base);
-        margin-bottom: var(--space-lg);
-    }
-    .slide-text .btn {
-        padding: 0.75rem 1rem;
-        font-size: 0.9rem;
-        min-width: auto;
-    }
-    .carousel-button {
-        padding: var(--space-sm);
-        font-size: 1rem;
-    }
-    .carousel-button.prev {
-        left: var(--space-sm);
-    }
-    .carousel-button.next {
-        right: var(--space-sm);
-    }
+
+/* -----------------------------
+    5. CARDS DE ANIME
+----------------------------- */
+.carousel-container {
+    /* Permite o scroll horizontal e esconde a barra */
+    display: flex;
+    overflow-x: scroll;
+    padding: var(--space-md) var(--space-lg);
+    gap: var(--space-md);
+    scroll-behavior: smooth; /* Para JS */
+    scroll-snap-type: x mandatory; /* Para rolagem manual */
+    
+    /* Esconde a scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    mask-image: linear-gradient(to right, transparent, black var(--space-lg), black calc(100% - var(--space-lg)), transparent);
 }
 
-@media (max-width: 480px) {
-    .slide-text {
-        text-align: center;
-        max-width: 100%;
-    }
-    .slide-content {
-        justify-content: center; /* Centraliza o texto em mobile */
-        background-position: 50% center;
-    }
-    .slide-text h2 {
-        font-size: 1.8rem;
-    }
-    .slide-text p {
-        display: none; /* Esconde a descrição em telas muito pequenas */
-    }
-    .slide-text .btn {
-        display: block;
-        margin: var(--space-sm) auto;
-        width: 80%;
-    }
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+.anime-card {
+    flex-shrink: 0;
+    width: 200px; 
+    text-decoration: none;
+    color: var(--color-text-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    scroll-snap-align: start; /* Para rolagem manual */
+    margin-right: 16px; /* Para as listas */
+}
+
+.anime-card:hover {
+    transform: scale(1.05);
+    z-index: 10;
+    box-shadow: 0 10px 25px rgba(244, 117, 33, 0.5);
+}
+
+.card-image-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    margin-bottom: var(--space-sm);
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+.anime-cover {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    transition: filter 0.3s ease;
+}
+
+.anime-card:hover .anime-cover {
+    filter: brightness(1.1);
+}
+
+.card-title {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-regular);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 2px;
+}
+
+/* Detalhes (Badges) */
+.premium-badge, .ep-count {
+    position: absolute;
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    font-weight: var(--font-weight-bold);
+}
+
+.premium-badge {
+    top: 0;
+    left: 0;
+    background-color: var(--color-primary);
+    color: var(--color-bg-dark);
+    border-radius: 0 0 var(--radius-sm) 0;
+}
+
+.ep-count {
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--color-text-light);
+    border-radius: var(--radius-sm) 0 0 0;
+}
+
+/* Botões dos Carrosséis de Lista */
+.list-carousel-wrapper {
+    position: relative;
+}
+
+.list-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 14px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.2rem;
+    line-height: 1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.list-carousel-wrapper:hover .list-carousel-btn {
+    opacity: 1;
+}
+
+.list-carousel-btn.prev {
+    left: var(--space-sm);
+}
+
+.list-carousel-btn.next {
+    right: var(--space-sm);
 }
 
 
 /* -----------------------------
-    Rodapé (Footer)
+    6. RODAPÉ (Footer)
 ----------------------------- */
 .footer {
     width: 100%;
-    background-color: var(--color-bg-dark); /* Fundo muito escuro */
+    background-color: var(--color-bg-dark);
     padding: var(--space-xl) var(--space-lg);
-    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Linha divisória sutil */
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
     color: var(--color-text-muted);
 }
 
@@ -406,16 +561,12 @@ body {
 }
 
 .footer-column {
-    flex: 1; /* Distribui o espaço entre as colunas */
+    flex: 1;
     min-width: 150px;
 }
 
 .footer-logo {
-    color: var(--color-primary);
     font-size: 1.5rem;
-    font-weight: var(--font-weight-bold);
-    letter-spacing: -1px;
-    display: block;
     margin-bottom: var(--space-md);
 }
 
@@ -444,7 +595,7 @@ body {
 }
 
 .footer ul li a:hover {
-    color: var(--color-primary); /* Destaque laranja ao passar o mouse */
+    color: var(--color-primary);
 }
 
 .copyright {
@@ -452,7 +603,6 @@ body {
     margin-bottom: var(--space-md);
 }
 
-/* Links Sociais */
 .social-links a {
     color: var(--color-text-muted);
     font-size: 1.5rem;
@@ -465,361 +615,143 @@ body {
     color: var(--color-text-light);
 }
 
-/* Responsividade do Rodapé */
+
+/* ================================================================
+    RESPONSIVIDADE (MEDIA QUERIES)
+================================================================ */
+
+@media (max-width: 1024px) {
+    /* Ajustes leves para telas de tablet */
+    .hero-carousel {
+        height: 55vh;
+    }
+}
+
 @media (max-width: 768px) {
-    .footer-container {
-        flex-wrap: wrap; /* Colunas quebram para a próxima linha */
-        justify-content: flex-start;
+    /* --- ESTRUTURA GERAL --- */
+    body {
+        padding-top: var(--header-height);
+    }
+    .container {
+        padding: 0 var(--space-md);
+    }
+    .anime-list-section h2 {
+        font-size: 1.4rem;
+        padding-left: var(--space-md);
+        margin-left: 0;
+        margin-right: 0;
     }
 
-    .footer-column {
-        min-width: 45%; /* Garante duas colunas por linha em telas médias */
-        margin-bottom: var(--space-lg);
+    /* --- 1. NAVBAR --- */
+    .navbar .container {
+        padding: 0 var(--space-md);
+    }
+    .navbar .nav-links {
+        display: none; /* Esconde links principais */
+    }
+    .menu-toggle-btn {
+        display: block; /* Mostra o botão de menu (sanduíche) */
+    }
+    .search-toggle-btn {
+        margin-right: var(--space-sm); /* Espaçamento entre o ícone da lupa e o de menu */
+    }
+
+    /* Posicionamento da caixa de busca NO MOBILE */
+    .search-box {
+        position: fixed; /* Troca para fixed para cobrir a tela */
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        height: auto;
+        padding: var(--space-sm) var(--space-md);
+        background-color: var(--color-bg-dark);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        z-index: 99; /* Abaixo do header */
+        /* Zera os estilos desktop */
+        opacity: 1; 
+        width: 100%;
+        border-color: transparent;
+        transition: none;
+        display: none; /* Controlado por JS (style.display) */
+    }
+    .search-box.active {
+        /* Remove o active de desktop para evitar conflito com mobile */
+        width: 100%;
+        padding: var(--space-sm) var(--space-md);
+        box-shadow: none;
+    }
+    .search-box .search-input {
+        opacity: 1;
+        padding: 10px;
+        border: 1px solid var(--color-text-muted);
+        border-radius: var(--radius-sm);
+    }
+
+
+    /* --- 2. HERO CAROUSEL --- */
+    .hero-carousel {
+        height: 50vh;
+    }
+    .slide-content {
+        align-items: flex-end; /* Conteúdo mais para baixo */
+        padding: var(--space-md);
+    }
+    .slide-overlay {
+        /* Ajusta o gradiente para dar mais destaque ao texto na parte inferior */
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+    }
+    .slide-text h2 {
+        font-size: 2rem;
+    }
+    .slide-text p {
+        display: none; /* Esconde a descrição */
+    }
+    .carousel-button {
+        display: none; /* Esconde setas de navegação */
     }
     
+    /* --- 3. CARROSSÉIS DE LISTA --- */
+    .carousel-container {
+        padding-left: var(--space-md); 
+        padding-right: var(--space-md);
+    }
+    .anime-card {
+        width: 120px;
+        margin-right: var(--space-sm);
+    }
+    .anime-cover {
+        height: 180px;
+    }
+    .list-carousel-btn {
+        display: none; /* Esconde os botões de navegação das listas */
+    }
+
+    /* --- 4. FOOTER --- */
+    .footer-container {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    .footer-column {
+        min-width: 45%;
+        margin-bottom: var(--space-lg);
+    }
     .footer-column:first-child {
-        min-width: 100%; /* A primeira coluna (logo) ocupa a linha inteira */
+        min-width: 100%;
     }
 }
 
 @media (max-width: 480px) {
     .footer-column {
-        min-width: 100%; /* Cada coluna ocupa uma linha inteira em mobile */
-    }
-}
-
-/* -----------------------------
-   Navbar Container
------------------------------ */
-.navbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #111;
-  padding: 0.8rem 2rem; /* 🔧 aumentei um pouco o padding geral */
-}
-
-.navbar .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 1200px; /* 🔥 limita o conteúdo para não grudar nas bordas */
-  margin: 0 auto;
-}
-
-/* -----------------------------
-   Logo
------------------------------ */
-.logo {
-  color: var(--color-primary, #f47521);
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-/* -----------------------------
-   Links de Navegação
------------------------------ */
-.nav-links {
-  display: flex;
-  gap: 1.8rem;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #ddd;
-  font-size: 0.95rem;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-  color: var(--color-primary, #f47521);
-}
-
-.nav-links a.active {
-  border-bottom: 2px solid var(--color-primary, #f47521);
-  padding-bottom: 2px;
-}
-
-/* -----------------------------
-   Ações do Usuário (ícones + busca)
------------------------------ */
-.user-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1px;
-  position: relative;
-  margin-left: 1.5rem; /* 🔥 aproxima os ícones do centro */
-}
-
-/* Ícones */
-.user-actions button,
-.user-actions a {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 1.05rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  width: 32px;
-  transition: transform 0.2s ease;
-}
-
-.user-actions i {
-  transition: color 0.25s ease, transform 0.2s ease;
-}
-
-.user-actions i:hover {
-  color: var(--color-primary, #f47521);
-  transform: scale(1.15);
-}
-
-/* -----------------------------
-   Barra de Pesquisa (expandível + fade suave)
------------------------------ */
-.search-box {
-  width: 0;
-  overflow: hidden;
-  opacity: 0;
-  padding: 0;
-  border: 1px solid transparent;
-  transition:
-    width 0.4s ease,
-    padding 0.4s ease,
-    border-color 0.4s ease,
-    background-color 0.4s ease,
-    opacity 0.3s ease;
-  display: flex;
-  align-items: center;
-  background-color: transparent;
-  border-radius: 6px;
-  position: relative;
-}
-
-.search-box.active {
-  width: 180px;
-  padding: 0 0.4rem;
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: var(--color-primary, #f47521);
-  opacity: 1;
-  box-shadow: 0 0 8px rgba(244, 117, 33, 0.4);
-}
-
-.search-input {
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 0.95rem;
-  width: 100%;
-  outline: none;
-  padding: 0.35rem 0;
-  transition: opacity 0.3s ease;
-}
-
-.search-box:not(.active) .search-input {
-  opacity: 0;
-}
-
-.nav-icons i {
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.nav-icons i:hover {
-  transform: scale(1.15);
-  color: var(--color-primary);
-}
-
-/* -----------------------------
-    Carrosséis de Listas de Animes (Rolagem Horizontal)
------------------------------ */
-
-.list-carousel-wrapper {
-    position: relative; /* Essencial para posicionar os botões de navegação */
-}
-
-.carousel-container {
-    /* CHAVES para a rolagem horizontal */
-    display: flex;
-    overflow-x: scroll; /* Permite rolar horizontalmente */
-    scroll-snap-type: x mandatory; /* Faz a rolagem "parar" no início de cada card */
-    scroll-behavior: smooth; /* Para a animação suave no clique dos botões */
-    
-    /* Preenchimento para garantir que o primeiro/último card não cole na borda */
-    padding-bottom: 20px; 
-    
-    /* Esconde a barra de rolagem (padrão em UIs modernas) */
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-
-/* Esconde a barra de rolagem para navegadores Webkit (Chrome, Safari) */
-.carousel-container::-webkit-scrollbar {
-    display: none;
-}
-
-.anime-card {
-    flex-shrink: 0; /* Impede que o card encolha */
-    width: 200px; /* Largura fixa do card (ajuste se necessário) */
-    margin-right: 16px; /* Espaçamento entre os cards */
-    scroll-snap-align: start; /* Alinha o início do card ao parar a rolagem */
-    transition: transform 0.2s;
-}
-
-/* Estilo e posicionamento dos botões de navegação */
-.list-carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px 14px;
-    cursor: pointer;
-    z-index: 10;
-    font-size: 1.2rem;
-    line-height: 1;
-    opacity: 0; /* Começa invisível */
-    transition: opacity 0.3s;
-}
-
-/* Os botões aparecem apenas quando o mouse está sobre o wrapper */
-.list-carousel-wrapper:hover .list-carousel-btn {
-    opacity: 1;
-}
-
-.list-carousel-btn.prev {
-    left: 0;
-}
-
-.list-carousel-btn.next {
-    right: 0;
-}
-
-
-
-
-
-
-
-
-
-
-
-/* ========================================
-    RESPONSIVIDADE (MEDIA QUERIES)
-======================================== */
-
-@media (max-width: 768px) {
-    /* --- ESTRUTURA GERAL --- */
-    .container {
-        padding: 0 15px; /* Reduz o padding lateral em telas menores */
-    }
-
-    /* --- 1. NAVBAR (Cabeçalho) --- */
-    .navbar .container {
-        justify-content: space-between;
-        padding: 0 15px;
-    }
-    .navbar .nav-links {
-        display: none; /* Esconde links principais no mobile */
-    }
-    .navbar .logo {
-        font-size: 1.5rem; /* Reduz o tamanho do logo */
-    }
-    .navbar .user-actions {
-        /* A busca e o perfil permanecem, os links de navegação somem */
-        gap: 10px;
-    }
-    
-    /* Posicionamento da caixa de busca no mobile */
-    .search-box {
-        position: absolute; 
-        top: 60px; /* Abaixo do header */
-        left: 0;
-        width: 100%;
-        padding: 0 15px;
-        background-color: var(--color-background-dark);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-        z-index: 100;
-    }
-    .search-box .search-input {
-        width: 100%;
-        border-radius: 4px;
-        padding: 10px;
-    }
-
-    /* --- 2. CARROSSEL PRINCIPAL (Hero) --- */
-    .hero-carousel {
-        height: 50vh; /* Altura menor para o carrossel no mobile */
-    }
-    .slide-content {
-        /* Move o conteúdo para a parte inferior da tela */
-        justify-content: flex-end; 
+        min-width: 100%;
     }
     .slide-text {
-        padding: 20px 20px 40px;
-        width: 100%;
-        max-width: none;
-        /* Reforça o gradiente na parte inferior para a leitura */
-        background: linear-gradient(to top, var(--color-background-dark) 0%, transparent 100%); 
-    }
-    .slide-text h2 {
-        font-size: 1.8rem;
-    }
-    .slide-text p {
-        display: none; /* Esconde a descrição longa no mobile */
-    }
-    .button-group {
-        gap: 10px;
-    }
-    .button-group a.btn {
-        padding: 8px 12px;
-        font-size: 0.8rem;
-    }
-
-    /* Esconde as setas grandes do carrossel Hero no mobile */
-    .hero-carousel .carousel-button {
-        display: none; 
-    }
-    
-    /* --- 3. CARROSSÉIS DE LISTA (Novos Simulcasts, Populares) --- */
-    .anime-list-section h2 {
-        font-size: 1.4rem;
-        padding-left: 15px; /* Alinha o título com o padding lateral da tela */
-    }
-    .carousel-container {
-        /* Garante que a rolagem comece na borda da tela */
-        padding-left: 15px; 
-        padding-right: 15px;
-    }
-    .anime-card {
-        width: 120px; /* Cards menores para caber mais na tela do celular */
-        margin-right: 10px;
-    }
-    .anime-card .card-title {
-        font-size: 0.75rem;
-    }
-    
-    /* Esconde os botões de navegação das listas no mobile (usuário usa o toque para rolar) */
-    .list-carousel-btn {
-        display: none; 
-    }
-
-    /* --- 4. FOOTER --- */
-    .footer-container {
-        flex-direction: column; /* Coloca as colunas em pilha vertical */
         text-align: center;
     }
-    .footer-column {
-        margin-bottom: 30px;
+    .slide-content {
+        justify-content: center;
     }
-    .footer-column ul {
-        padding: 0;
+    .slide-text .btn {
+        width: 80%;
+        margin: var(--space-sm) auto;
     }
 }

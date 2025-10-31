@@ -1,23 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ----------------------------------------------------------------
-    // Lógica da Barra de Busca (Que já implementamos)
-    // ----------------------------------------------------------------
-    const searchBox = document.querySelector('.search-box');
-    const searchToggleBtn = document.querySelector('.search-toggle-btn'); 
-
-    if (searchToggleBtn && searchBox) {
-        searchToggleBtn.addEventListener('click', () => {
-            searchBox.classList.toggle('active');
-            
-            if (searchBox.classList.contains('active')) {
-                document.querySelector('.search-input').focus();
-            }
-        });
-    }
-
-    // ----------------------------------------------------------------
-    // Lógica do Carrossel de Destaque (NOVA IMPLEMENTAÇÃO)
-    // ----------------------------------------------------------------
+    // ================================================================
+    // 1. LÓGICA DO CARROSSEL DE DESTAQUE (HERO CAROUSEL)
+    // ================================================================
     const carouselContainer = document.querySelector('.hero-carousel');
     const slides = document.querySelectorAll('.carousel-slide');
     const indicators = document.querySelectorAll('.carousel-indicator');
@@ -28,17 +12,19 @@ document.addEventListener('DOMContentLoaded', () => {
     let autoAdvanceInterval;
     const slideDuration = 8000; 
 
-    // Função para mover o carrossel para um slide específico
     function moveToSlide(index) {
-        // Remove a classe 'current-slide' do slide e indicador atual
-        slides[currentSlideIndex].classList.remove('current-slide');
-        indicators[currentSlideIndex].classList.remove('current-slide');
+        // Garante que a lógica só rode se os elementos existirem
+        if (slides.length === 0) return; 
+
+        // Remove a classe 'current-slide' do slide e indicador atual (se existirem)
+        if (slides[currentSlideIndex]) slides[currentSlideIndex].classList.remove('current-slide');
+        if (indicators[currentSlideIndex]) indicators[currentSlideIndex].classList.remove('current-slide');
 
         // Calcula o novo índice
         if (index >= slides.length) {
-            currentSlideIndex = 0; // Volta para o primeiro slide
+            currentSlideIndex = 0;
         } else if (index < 0) {
-            currentSlideIndex = slides.length - 1; // Vai para o último slide
+            currentSlideIndex = slides.length - 1;
         } else {
             currentSlideIndex = index;
         }
@@ -47,67 +33,54 @@ document.addEventListener('DOMContentLoaded', () => {
         slides[currentSlideIndex].classList.add('current-slide');
         indicators[currentSlideIndex].classList.add('current-slide');
 
-        // Implementa a lógica de translação (movimento) se você estiver usando CSS para isso.
-        // Se a animação for apenas por opacidade (fade), esta parte pode ser opcional.
-        // O HTML sugere um 'carousel-track', então vamos movê-lo:
+        // Implementa a lógica de translação (movimento)
         const track = document.querySelector('.carousel-track');
-        const slideWidth = slides[0].getBoundingClientRect().width;
+        // Usa slides[0] pois a largura é sempre a mesma (100% da tela)
+        const slideWidth = slides[0].getBoundingClientRect().width; 
         track.style.transform = 'translateX(-' + (slideWidth * currentSlideIndex) + 'px)';
     }
 
-    // Função para o avanço automático
     function startAutoAdvance() {
+        stopAutoAdvance(); // Limpa qualquer intervalo anterior
         autoAdvanceInterval = setInterval(() => {
             moveToSlide(currentSlideIndex + 1);
         }, slideDuration);
     }
 
-    // Função para parar o avanço automático
     function stopAutoAdvance() {
         clearInterval(autoAdvanceInterval);
     }
     
-    // 1. Adiciona a funcionalidade de clique nos botões (próximo e anterior)
-    nextButton.addEventListener('click', () => {
-        stopAutoAdvance(); // Pausa ao interagir
-        moveToSlide(currentSlideIndex + 1);
-        startAutoAdvance(); // Reinicia após a interação
-    });
-
-    prevButton.addEventListener('click', () => {
-        stopAutoAdvance(); // Pausa ao interagir
-        moveToSlide(currentSlideIndex - 1);
-        startAutoAdvance(); // Reinicia após a interação
-    });
-    
-    // 2. Adiciona a funcionalidade de clique nos indicadores
-    indicators.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-            stopAutoAdvance();
-            moveToSlide(index);
-            startAutoAdvance();
+    if (carouselContainer) {
+        // Event Listeners
+        nextButton.addEventListener('click', () => { stopAutoAdvance(); moveToSlide(currentSlideIndex + 1); startAutoAdvance(); });
+        prevButton.addEventListener('click', () => { stopAutoAdvance(); moveToSlide(currentSlideIndex - 1); startAutoAdvance(); });
+        
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                stopAutoAdvance();
+                moveToSlide(index);
+                startAutoAdvance();
+            });
         });
-    });
 
-    // 3. Funcionalidade de Hover (Pausar ao passar o mouse)
-    carouselContainer.addEventListener('mouseenter', stopAutoAdvance);
-    carouselContainer.addEventListener('mouseleave', startAutoAdvance);
+        // Funcionalidade de Hover
+        carouselContainer.addEventListener('mouseenter', stopAutoAdvance);
+        carouselContainer.addEventListener('mouseleave', startAutoAdvance);
 
-    // Inicia o carrossel no carregamento da página
-    startAutoAdvance();
+        // Inicia e ajusta ao redimensionar
+        startAutoAdvance();
+        window.addEventListener('resize', () => {
+            moveToSlide(currentSlideIndex);
+        });
+        // Garante que o primeiro slide esteja ativo no início
+        moveToSlide(currentSlideIndex); 
+    }
 
-    // Ajusta o carrossel ao redimensionar a tela
-    window.addEventListener('resize', () => {
-        moveToSlide(currentSlideIndex);
-    });
-});
 
-// ... (Seu código existente da Navbar e do Carrossel de Destaque) ...
-
-    // ----------------------------------------------------------------
-    // Lógica dos Carrosséis de Lista (Novos Simulcasts, Populares)
-    // ----------------------------------------------------------------
-
+    // ================================================================
+    // 2. LÓGICA DOS CARROSSÉIS DE LISTA (LIST CAROUSELS)
+    // ================================================================
     const listCarouselButtons = document.querySelectorAll('.list-carousel-btn');
     const cardWidth = 200;
     const cardMargin = 16;
@@ -115,19 +88,130 @@ document.addEventListener('DOMContentLoaded', () => {
 
     listCarouselButtons.forEach(button => {
         button.addEventListener('click', () => {
-            // Pega o ID do carrossel alvo (ex: 'simulcasts-carousel')
             const targetId = button.getAttribute('data-target');
             const carousel = document.getElementById(targetId);
             
             if (!carousel) return;
 
-            // Define a direção da rolagem: 1 para 'next', -1 para 'prev'
             const direction = button.classList.contains('next') ? 1 : -1;
             
-            // Realiza a rolagem horizontalmente
             carousel.scrollBy({
                 left: scrollAmount * direction,
                 behavior: 'smooth'
             });
         });
     });
+
+
+    // ================================================================
+    // 3. LÓGICA DA BUSCA (FILTRO DE CARDS)
+    // ================================================================
+    const searchInput = document.querySelector('.search-input'); 
+    const allAnimeCards = document.querySelectorAll('.anime-card');
+
+    // Função principal de filtro: LÊ data-title e data-id do HTML
+    function filterAnimeCards(searchTerm) {
+        const normalizedTerm = searchTerm.toLowerCase().trim();
+
+        allAnimeCards.forEach(card => {
+            // Verifica se os atributos existem para evitar erros
+            const cardTitle = card.getAttribute('data-title')?.toLowerCase() || '';
+            const cardId = card.getAttribute('data-id') || ''; 
+
+            const matchesTitle = cardTitle.includes(normalizedTerm);
+            const matchesId = cardId.includes(normalizedTerm);
+
+            if (matchesTitle || matchesId || normalizedTerm === '') {
+                card.style.display = 'block'; 
+            } else {
+                card.style.display = 'none'; 
+            }
+        });
+    }
+
+    if (searchInput) {
+        // Adiciona o Event Listener para monitorar a digitação
+        searchInput.addEventListener('input', (e) => {
+            filterAnimeCards(e.target.value);
+        });
+    }
+
+
+    // ================================================================
+    // 4. LÓGICA DA BARRA DE BUSCA (Desktop e Mobile Toggle)
+    // ================================================================
+    const searchBox = document.querySelector('.search-box');
+    const searchToggleBtn = document.querySelector('.search-toggle-btn'); 
+
+    if (searchToggleBtn && searchBox && searchInput) {
+        searchToggleBtn.addEventListener('click', () => {
+            // Verifica a largura da tela
+            if (window.innerWidth > 768) {
+                // Lógica Desktop: Expande/Contrai
+                searchBox.classList.toggle('active');
+                if (searchBox.classList.contains('active')) {
+                    searchInput.focus();
+                } else {
+                    searchInput.value = ''; // Limpa ao recolher
+                    filterAnimeCards(''); // Mostra todos os cards novamente
+                }
+            } else {
+                // Lógica Mobile: Exibe/Oculta em tela cheia (usando style.display)
+                const isVisible = searchBox.style.display === 'flex';
+
+                if (!isVisible) {
+                    searchBox.style.display = 'flex'; 
+                    searchInput.focus();
+                } else {
+                    searchBox.style.display = 'none'; 
+                    searchInput.value = '';
+                    filterAnimeCards(''); // Mostra todos os cards novamente
+                }
+            }
+        });
+        
+        // Oculta/Limpa a busca mobile ao redimensionar para desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                searchBox.style.display = 'none';
+                searchInput.value = '';
+                filterAnimeCards('');
+            }
+        });
+    }
+
+
+    // ================================================================
+    // 5. LÓGICA DA SIDEBAR MOBILE
+    // ================================================================
+    const menuToggleBtn = document.querySelector('.menu-toggle-btn');
+    const closeSidebarBtn = document.querySelector('.close-sidebar-btn');
+    const sidebar = document.getElementById('mobile-sidebar');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    function openSidebar() {
+        sidebar.classList.add('active');
+        sidebarOverlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('active');
+        sidebarOverlay.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    if (menuToggleBtn && sidebar) {
+        menuToggleBtn.addEventListener('click', openSidebar);
+        closeSidebarBtn.addEventListener('click', closeSidebar);
+        sidebarOverlay.addEventListener('click', closeSidebar);
+
+        // Fechar a sidebar ao redimensionar (se for para desktop)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeSidebar();
+            }
+        });
+    }
+
+});
