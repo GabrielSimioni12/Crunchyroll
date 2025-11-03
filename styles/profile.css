@@ -1,0 +1,168 @@
+/* -----------------------------
+   profile.css - ESTILOS COMPLETOS E FIXOS
+   ----------------------------- */
+
+/* ESTILOS DE RESET E BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* Usa a fonte Lato carregada no HTML */
+    font-family: 'Lato', 'Helvetica Neue', helvetica, sans-serif;
+}
+
+body {
+    background-color: #1a1a1a; /* Fundo Escuro */
+    color: #f9f9f9; /* Texto Claro */
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* UTILIDADE */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* NAVBAR (Estilos Mínimos para aparecer) */
+.navbar {
+    background-color: #1a1a1a;
+    color: #f9f9f9;
+    padding: 15px 0;
+    position: sticky; /* ou fixed, dependendo do seu design */
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #242424;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f47521; /* Laranja da Crunchyroll */
+}
+
+.navbar a {
+    color: #f9f9f9;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #f47521;
+}
+
+/* -----------------------------
+   ESTILOS ESPECÍFICOS DO PERFIL
+   ----------------------------- */
+
+.profile-page-content {
+    padding-top: 80px; 
+    padding-bottom: 60px;
+}
+
+.profile-page-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+/* Card Principal do Perfil */
+.profile-header-card {
+    background-color: #242424; /* Um tom um pouco mais claro */
+    border-radius: 8px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.profile-info-block {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #f47521; /* Laranja */
+    margin-bottom: 10px;
+}
+
+.user-details h2 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.account-status {
+    color: #f47521; /* Laranja */
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+/* Estatísticas */
+.profile-stats-summary {
+    display: flex;
+    gap: 40px;
+    text-align: center;
+}
+
+.stat-item h3 {
+    font-size: 2.5rem;
+    color: #f47521; /* Laranja */
+    line-height: 1;
+}
+
+.stat-item p {
+    color: #ccc; /* Cinza claro */
+    font-size: 0.9rem;
+}
+
+/* Detalhes da Conta */
+.profile-details-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #2a2a2a; 
+    padding-bottom: 10px;
+}
+
+.account-details-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.detail-item label {
+    display: block;
+    color: #f47521; /* Laranja */
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.detail-item a {
+    color: #f47521;
+    text-decoration: none;
+}
+
+/* FOOTER (Estilos Mínimos) */
+.footer {
+    background-color: #1a1a1a;
+    padding: 20px 0;
+    text-align: center;
+    color: #ccc;
+    border-top: 1px solid #242424;
+}
+
+/* Responsividade Básica (Mantenha o resto das mídias queries que você tinha!) */
+/* ... */

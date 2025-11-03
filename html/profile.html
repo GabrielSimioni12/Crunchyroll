@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil | AnimeVerse</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> 
+    
+    <link rel="stylesheet" href="../styles/profile.css"> 
+</head>
+<body>
+    
+    <header class="navbar">
+        <div class="container">
+            <span class="logo">CRUNCHYROLL</span>
+            <nav class="nav-links">
+                <a href="home.html">Início</a>
+                <a href="#">Simulcasts</a>
+                <a href="#">Populares</a>
+                <a href="#">Minha Lista</a>
+            </nav>
+            <div class="user-actions">
+                <button class="search-toggle-btn" aria-label="Abrir busca"><i class="fas fa-search"></i></button>
+                <div class="search-box">
+                    <input type="text" placeholder="Buscar animes, gêneros..." class="search-input">
+                </div>
+                <a href="profile.html" class="profile-btn" aria-label="Perfil do Usuário">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+    <main class="profile-page-content">
+        <div class="container">
+            <h1>Meu Perfil</h1>
+            
+            <section class="profile-header-card">
+                <div class="profile-info-block">
+                    <div class="profile-avatar-area">
+                        <img src="../img/default_avatar.png" alt="Foto de Perfil do Usuário" class="profile-avatar">
+                        <button class="btn-edit-avatar"><i class="fas fa-camera"></i> Mudar Foto</button>
+                    </div>
+                    
+                    <div class="user-details">
+                        <h2>Nome do Usuário</h2>
+                        <p class="account-status">Membro Premium <i class="fas fa-crown"></i></p>
+                        <p class="member-since">Membro desde: Janeiro/2024</p>
+                    </div>
+                </div>
+
+                <div class="profile-stats-summary">
+                    <div class="stat-item">
+                        <h3>150</h3>
+                        <p>Animes Assistidos</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>450h</h3>
+                        <p>Tempo Total Assistido</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>120</h3>
+                        <p>Dias de Conta</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="profile-details-section">
+                <h2>Detalhes da Conta</h2>
+                <div class="account-details-grid">
+                    <div class="detail-item">
+                        <label>E-mail</label>
+                        <p>usuario@exemplo.com</p>
+                    </div>
+                    <div class="detail-item">
+                        <label>Plano</label>
+                        <p>Mega Fan Anual</p>
+                    </div>
+                    <div class="detail-item">
+                        <label>Senha</label>
+                        <p>******** <a href="#">Alterar Senha</a></p>
+                    </div>
+                    <div class="detail-item">
+                        <label>Personalização</label>
+                        <p><a href="#">Configurações de Avatar e Temas</a></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="watched-list-section">
+                <h2>Sua Lista de Assistidos</h2>
+                <div class="watched-list-carousel">
+                    <p>Aqui virá uma lista ou galeria dos animes que o usuário assistiu.</p>
+                </div>
+            </section>
+            
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 AnimeVerse. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    
+</body>
+</html>
