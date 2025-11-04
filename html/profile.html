@@ -6,43 +6,79 @@
     <title>Meu Perfil | AnimeVerse</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"> 
-    
     <link rel="stylesheet" href="../styles/profile.css"> 
 </head>
 <body>
     
     <header class="simple-header">
-    <div class="container">
-        <a href="home.html" class="back-btn" aria-label="Voltar para o Início">
-            <i class="fas fa-arrow-left"></i>
-            <span>Voltar</span>
-        </a>
-        <span class="logo">CRUNCHYROLL</span>
-        <div></div>
-    </div>
-</header>
+        <div class="container">
+            <a href="home.html" class="back-btn" aria-label="Voltar para o Início">
+                <i class="fas fa-arrow-left"></i>
+                <span>Voltar</span>
+            </a>
+            <span class="logo">CRUNCHYROLL</span>
+            <div></div> 
+        </div>
+    </header>
+    
     <main class="profile-page-content">
         <div class="container">
             <h1>Meu Perfil</h1>
             
+            <section class="profile-header-card">
+                <div class="profile-info-block">
+                    <div class="profile-avatar-area">
+                        <img src="../img/default_avatar.png" id="current-avatar" alt="Foto de Perfil do Usuário" class="profile-avatar clickable-avatar">
+                        <p class="change-text" onclick="document.getElementById('avatar-gallery-section').scrollIntoView({ behavior: 'smooth' });">
+                            Mudar Avatar
+                        </p>
+                    </div>
+                    
+                    <div class="user-details">
+                        <h2>Nome do Usuário</h2>
+                        <p class="account-status">Membro Premium <i class="fas fa-crown"></i></p>
+                        <p class="member-since">Membro desde: Janeiro/2024</p>
+                    </div>
+                </div>
+
+                <div class="profile-stats-summary">
+                    <div class="stat-item">
+                        <h3>150</h3>
+                        <p>Animes Assistidos</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>450h</h3>
+                        <p>Tempo Total Assistido</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>120</h3>
+                        <p>Dias de Conta</p>
+                    </div>
+                </div>
+            </section>
             <section class="avatar-gallery-section" id="avatar-gallery-section">
-        <h2>Selecione seu Avatar de Anime</h2>
-        <p>Escolha um dos ícones disponíveis para personalizar seu perfil.</p>
-        
-        <div class="avatar-grid">
-            <img src="../img/avatar-goku.png" alt="Avatar Goku" class="avatar-option" data-avatar-url="../img/avatar-goku.png">
-            <img src="../img/avatar-luffy.png" alt="Avatar Luffy" class="avatar-option" data-avatar-url="../img/avatar-luffy.png">
-            <img src="../img/avatar-naruto.png" alt="Avatar Naruto" class="avatar-option" data-avatar-url="../img/avatar-naruto.png">
-            <img src="../img/avatar-saitama.png" alt="Avatar Saitama" class="avatar-option" data-avatar-url="../img/avatar-saitama.png">
-            </div>
-        <button class="btn-primary">Salvar Novo Avatar</button>
-    </section>
-    
-</div>
-</main>
-            
+                <h2>Selecione seu Avatar de Anime</h2>
+                <p>Escolha um dos ícones disponíveis para personalizar seu perfil.</p>
+                
+                <div class="avatar-grid">
+                    <img src="../Icons/Eren Jaeger.jpg" alt="Avatar Eren Yeager" class="avatar-option" data-avatar-url="../Icons/Eren Jaeger.jpg">
+                    <img src="../Icons/Gon Freecss.jpg" alt="Avatar Gon" class="avatar-option" data-avatar-url="../Icons/Gon Freecss.jpg">
+                    <img src="../Icons/Hatake Kakashi.jpg" alt="Avatar Kakashi" class="avatar-option" data-avatar-url="../Icons/Hatake Kakashi.jpg">
+                    <img src="../Icons/Jujutsu Kaisen Itadori.jpg" alt="Avatar Itadori" class="avatar-option" data-avatar-url="../Icons/Jujutsu Kaisen Itadori.jpg">
+                    <img src="../Icons/Kurta Kurapika (1).jpg" alt="Kurapika" class="avatar-option" data-avatar-url="../Icons/Kurta Kurapika (1).jpg">
+                    <img src="../Icons/☆ Shoto Todoroki_.jpg" alt="Avatar Todoroki" class="avatar-option" data-avatar-url="../Icons/☆ Shoto Todoroki_.jpg">
+                    <img src="../Icons/𝐒𝐨𝐧 𝐆𝐨𝐤𝐮 𝐈𝐜𝐨𝐧 ( 𝐃𝐁𝐒 ).jpg" alt="Avatar Goku" class="avatar-option" data-avatar-url="../Icons/𝐒𝐨𝐧 𝐆𝐨𝐤𝐮 𝐈𝐜𝐨𝐧 ( 𝐃𝐁𝐒 ).jpg">
+                    <img src="../Icons/ﾟ_ _.jpg" alt="Avatar Icons" class="avatar-option" data-avatar-url="../Icons/ﾟ_ _.jpg">
+                    <img src="../Icons/Pikachu.jpg" alt="Avatar Pikachu" class="avatar-option" data-avatar-url="../Icons/Pikachu.jpg">
+                    <img src="../Icons/tanjiro.jpg" alt="Avatar tanjiro" class="avatar-option" data-avatar-url="../Icons/tanjiro.jpg">
+                    <img src="../Icons/Gojo Satoru _ Gojou Satoru _ Jujutsu Kaisen icon.jpg" alt="Avatar Icons" class="avatar-option" data-avatar-url="../Icons/Gojo Satoru _ Gojou Satoru _ Jujutsu Kaisen icon.jpg">
+                    <img src="../Icons/Orange Crunchyroll App Icon.jpg" alt="Avatar Crunchyroll" class="avatar-option" data-avatar-url="../Icons/Orange Crunchyroll App Icon.jpg">
+                    <img src="../Icons/Anime App Icons Crunchyroll Hime.jpg" alt="Avatar Icons" class="avatar-option" data-avatar-url="../Icons/Anime App Icons Crunchyroll Hime.jpg">
+                    <img src="../Icons/Crunchyroll Logo_.jpg" alt="Avatar Icons" class="avatar-option" data-avatar-url="../Icons/Crunchyroll Logo_.jpg">
+                </div>
+                <button class="btn-primary">Salvar Novo Avatar</button>
+            </section>
             <section class="profile-details-section">
                 <h2>Detalhes da Conta</h2>
                 <div class="account-details-grid">
@@ -80,6 +116,8 @@
             <p>&copy; 2025 AnimeVerse. Todos os direitos reservados.</p>
         </div>
     </footer>
-    
+
+    <script src="../js/profile.js"></script>
+
 </body>
 </html>

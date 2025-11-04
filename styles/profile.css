@@ -246,14 +246,14 @@ body {
 
 .avatar-grid {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     flex-wrap: wrap;
     margin-bottom: 30px;
 }
 
 .avatar-option {
-    width: 80px;
-    height: 80px;
+    width: 150px;
+    height: 159px;
     border-radius: 50%;
     object-fit: cover;
     border: 3px solid transparent; /* Padrão transparente */
@@ -262,7 +262,26 @@ body {
 }
 
 .avatar-option:hover {
+    transform: scale(1.05); /* Efeito de zoom ao passar o mouse */
     opacity: 0.9;
+}
+
+.avatar-option.in-use {
+    border-color: #f47521; /* Laranja da Crunchyroll */
+    box-shadow: 0 0 10px rgba(244, 117, 33, 0.7); /* Adiciona um brilho laranja */
+}
+
+/* 2. ESTILO PARA O AVATAR SELECIONADO (temporário antes de salvar) */
+.avatar-option.selected {
+    border-color: #f9f9f9; /* Uma borda branca ou cinza clara para seleção temporária */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    /* Se você quiser o laranja para o selecionado, use #f47521 aqui também */
+}
+
+/* Ajuste na imagem de perfil grande para usar a mesma borda */
+.profile-avatar {
+    /* ... (mantenha os estilos existentes, mas verifique se a borda é laranja) */
+    border: 4px solid #f47521;
 }
 
 .avatar-option.selected {
@@ -283,4 +302,76 @@ body {
 
 .btn-primary:hover {
     background-color: #ff7f32;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Responsividade Básica (Ajuste para telas menores) */
+@media (max-width: 900px) {
+    .profile-header-card {
+        flex-direction: column; /* Empilha o bloco de info e as estatísticas */
+        align-items: flex-start;
+        padding: 30px;
+        gap: 30px;
+    }
+    .profile-stats-summary {
+        width: 100%;
+        justify-content: space-around;
+    }
+}
+@media (max-width: 500px) {
+    .profile-header-card {
+        text-align: center;
+    }
+    .profile-info-block {
+        flex-direction: column; /* Empilha avatar e nome */
+        text-align: center;
+        width: 100%;
+    }
+    .profile-stats-summary {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
