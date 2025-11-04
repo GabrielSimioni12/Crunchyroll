@@ -166,3 +166,121 @@ body {
 
 /* Responsividade Básica (Mantenha o resto das mídias queries que você tinha!) */
 /* ... */
+
+
+/* -----------------------------
+   ESTILOS DO HEADER SIMPLIFICADO
+   ----------------------------- */
+.simple-header {
+    background-color: #1a1a1a; 
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #242424;
+}
+
+.simple-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.simple-header .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #f47521; /* Laranja */
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #f9f9f9;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    color: #f47521;
+}
+
+/* -----------------------------
+   ESTILOS DE AVATAR E GALERIA
+   ----------------------------- */
+
+/* Faz a imagem de perfil ser um 'botão' */
+.clickable-avatar {
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.clickable-avatar:hover {
+    opacity: 0.8;
+}
+
+.change-text {
+    cursor: pointer;
+    color: #f47521;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* Seção da Galeria */
+.avatar-gallery-section {
+    padding: 40px 0;
+    border-top: 1px solid #242424;
+    margin-top: 40px;
+}
+
+.avatar-gallery-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.avatar-gallery-section p {
+    color: #ccc;
+    margin-bottom: 25px;
+}
+
+.avatar-grid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.avatar-option {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid transparent; /* Padrão transparente */
+    cursor: pointer;
+    transition: border 0.2s, opacity 0.2s;
+}
+
+.avatar-option:hover {
+    opacity: 0.9;
+}
+
+.avatar-option.selected {
+    border-color: #f47521; /* Borda laranja quando selecionado */
+}
+
+/* Estilo para um botão genérico de Salvar */
+.btn-primary {
+    background-color: #f47521;
+    color: #1a1a1a;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #ff7f32;
+}

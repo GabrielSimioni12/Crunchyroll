@@ -13,59 +13,35 @@
 </head>
 <body>
     
-    <header class="navbar">
-        <div class="container">
-            <span class="logo">CRUNCHYROLL</span>
-            <nav class="nav-links">
-                <a href="home.html">Início</a>
-                <a href="#">Simulcasts</a>
-                <a href="#">Populares</a>
-                <a href="#">Minha Lista</a>
-            </nav>
-            <div class="user-actions">
-                <button class="search-toggle-btn" aria-label="Abrir busca"><i class="fas fa-search"></i></button>
-                <div class="search-box">
-                    <input type="text" placeholder="Buscar animes, gêneros..." class="search-input">
-                </div>
-                <a href="profile.html" class="profile-btn" aria-label="Perfil do Usuário">
-                    <i class="fas fa-user"></i>
-                </a>
-            </div>
-        </div>
-    </header>
+    <header class="simple-header">
+    <div class="container">
+        <a href="home.html" class="back-btn" aria-label="Voltar para o Início">
+            <i class="fas fa-arrow-left"></i>
+            <span>Voltar</span>
+        </a>
+        <span class="logo">CRUNCHYROLL</span>
+        <div></div>
+    </div>
+</header>
     <main class="profile-page-content">
         <div class="container">
             <h1>Meu Perfil</h1>
             
-            <section class="profile-header-card">
-                <div class="profile-info-block">
-                    <div class="profile-avatar-area">
-                        <img src="../img/default_avatar.png" alt="Foto de Perfil do Usuário" class="profile-avatar">
-                        <button class="btn-edit-avatar"><i class="fas fa-camera"></i> Mudar Foto</button>
-                    </div>
-                    
-                    <div class="user-details">
-                        <h2>Nome do Usuário</h2>
-                        <p class="account-status">Membro Premium <i class="fas fa-crown"></i></p>
-                        <p class="member-since">Membro desde: Janeiro/2024</p>
-                    </div>
-                </div>
-
-                <div class="profile-stats-summary">
-                    <div class="stat-item">
-                        <h3>150</h3>
-                        <p>Animes Assistidos</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>450h</h3>
-                        <p>Tempo Total Assistido</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>120</h3>
-                        <p>Dias de Conta</p>
-                    </div>
-                </div>
-            </section>
+            <section class="avatar-gallery-section" id="avatar-gallery-section">
+        <h2>Selecione seu Avatar de Anime</h2>
+        <p>Escolha um dos ícones disponíveis para personalizar seu perfil.</p>
+        
+        <div class="avatar-grid">
+            <img src="../img/avatar-goku.png" alt="Avatar Goku" class="avatar-option" data-avatar-url="../img/avatar-goku.png">
+            <img src="../img/avatar-luffy.png" alt="Avatar Luffy" class="avatar-option" data-avatar-url="../img/avatar-luffy.png">
+            <img src="../img/avatar-naruto.png" alt="Avatar Naruto" class="avatar-option" data-avatar-url="../img/avatar-naruto.png">
+            <img src="../img/avatar-saitama.png" alt="Avatar Saitama" class="avatar-option" data-avatar-url="../img/avatar-saitama.png">
+            </div>
+        <button class="btn-primary">Salvar Novo Avatar</button>
+    </section>
+    
+</div>
+</main>
             
             <section class="profile-details-section">
                 <h2>Detalhes da Conta</h2>
