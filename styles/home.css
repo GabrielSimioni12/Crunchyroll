@@ -292,8 +292,7 @@ body {
 .hero-carousel {
     position: relative;
     overflow: hidden;
-    /* Ajuste para altura padrão no desktop */
-    height: 60vh; 
+    height: 550px;
 }
 
 .carousel-track-container {
@@ -351,6 +350,14 @@ body {
     font-size: var(--font-size-lg);
     color: var(--color-text-muted);
     margin-bottom: var(--space-xl);
+    
+    /* Evita corte na descrição */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3; /* Propriedade padrão */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .slide-text .btn {
@@ -690,7 +697,7 @@ body {
 
     /* --- 2. HERO CAROUSEL --- */
     .hero-carousel {
-        height: 50vh;
+       height: 400px; /* ALTURA AJUSTADA: Mais espaço para mobile */
     }
     .slide-content {
         align-items: flex-end; /* Conteúdo mais para baixo */
@@ -700,11 +707,22 @@ body {
         /* Ajusta o gradiente para dar mais destaque ao texto na parte inferior */
         background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
     }
+
+    .slide-text {
+        /* Garante que o texto fique na parte inferior */
+        width: 100%;
+        margin-bottom: 20px; /* Margem da base */
+        max-width: none;
+    }
+
     .slide-text h2 {
         font-size: 2rem;
     }
     .slide-text p {
-        display: none; /* Esconde a descrição */
+    display: -webkit-box;
+    font-size: 1rem;
+    margin-bottom: var(--space-md);
+
     }
     .carousel-button {
         display: none; /* Esconde setas de navegação */
@@ -744,14 +762,97 @@ body {
     .footer-column {
         min-width: 100%;
     }
+
+    .hero-carousel {
+        height: 300px; /* ALTURA AJUSTADA: Redução para telas muito pequenas */
+    }
+
+    
     .slide-text {
         text-align: center;
     }
+
+    .slide-text h2 {
+        font-size: 1.8rem;
+    }
+
+    .slide-text .btn {
+        width: 100%; /* Botões ocupando largura total */
+        margin: var(--space-sm) 0;
+    }
+
     .slide-content {
         justify-content: center;
     }
     .slide-text .btn {
         width: 80%;
         margin: var(--space-sm) auto;
+    }
+}
+
+/* -----------------------------
+   POSICIONAMENTO DOS BOTÕES NO SLIDE (HERO)
+----------------------------- */
+.button-group {
+    /* Garante que os botões fiquem um ao lado do outro */
+    display: flex; 
+    gap: var(--space-md); /* Espaçamento entre os botões (Ex: 16px) */
+    margin-top: 25px; /* Espaçamento da descrição */
+    align-items: center;
+}
+
+/* -----------------------------
+   ESTILOS DOS BOTÕES (Ajustando seus nomes de classe)
+----------------------------- */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    font-size: 1rem;
+}
+
+/* 1. BOTÃO PRIMÁRIO (Laranja Chamativo) */
+.btn-primary {
+    background-color: var(--color-primary); /* Laranja da Crunchyroll */
+    color: var(--color-bg-dark); /* Texto escuro */
+    border-color: var(--color-primary);
+    box-shadow: 0 4px 15px rgba(244, 117, 33, 0.4); /* Sombra para destacar */
+}
+
+.btn-primary:hover {
+    background-color: #ff7f32; /* Laranja mais claro no hover */
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 20px rgba(244, 117, 33, 0.6);
+}
+
+/* 2. BOTÃO SECUNDÁRIO (Transparente com Borda Clara) */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-text-light);
+    border-color: var(--color-text-light);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.15); 
+    border-color: var(--color-primary); 
+    color: var(--color-primary);
+}
+
+/* Responsividade (Se o seu @media (max-width: 480px) não tiver isso, adicione!) */
+@media (max-width: 480px) {
+    /* ... (outras regras) ... */
+    .button-group {
+        flex-direction: column; /* Empilha os botões no celular */
+        width: 100%;
+        gap: var(--space-sm);
+    }
+    .button-group .btn {
+        width: 100%; /* Faz cada botão ocupar a largura total no celular */
     }
 }
