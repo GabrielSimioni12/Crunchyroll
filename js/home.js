@@ -1,43 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
+
     // ================================================================
     // 1. LÓGICA DO CARROSSEL DE DESTAQUE (HERO CAROUSEL)
     // ================================================================
     const carouselContainer = document.querySelector('.hero-carousel');
+    const track = document.querySelector('.carousel-track');
     const slides = document.querySelectorAll('.carousel-slide');
     const indicators = document.querySelectorAll('.carousel-indicator');
     const prevButton = document.querySelector('.carousel-button.prev');
     const nextButton = document.querySelector('.carousel-button.next');
-    
+
     let currentSlideIndex = 0;
     let autoAdvanceInterval;
-    const slideDuration = 8000; 
+    const slideDuration = 7000; // 7 segundos
 
     function moveToSlide(index) {
-        // Garante que a lógica só rode se os elementos existirem
-        if (slides.length === 0) return; 
+        if (!slides.length || !track) return;
 
-        // Remove a classe 'current-slide' do slide e indicador atual (se existirem)
-        if (slides[currentSlideIndex]) slides[currentSlideIndex].classList.remove('current-slide');
-        if (indicators[currentSlideIndex]) indicators[currentSlideIndex].classList.remove('current-slide');
+        // Remove slide atual
+        slides[currentSlideIndex]?.classList.remove('current-slide');
+        indicators[currentSlideIndex]?.classList.remove('current-slide');
 
-        // Calcula o novo índice
-        if (index >= slides.length) {
-            currentSlideIndex = 0;
-        } else if (index < 0) {
-            currentSlideIndex = slides.length - 1;
-        } else {
-            currentSlideIndex = index;
-        }
+        // Define o novo índice
+        if (index >= slides.length) currentSlideIndex = 0;
+        else if (index < 0) currentSlideIndex = slides.length - 1;
+        else currentSlideIndex = index;
 
-        // Adiciona a classe 'current-slide' ao novo slide e indicador
+        // Ativa o novo slide
         slides[currentSlideIndex].classList.add('current-slide');
-        indicators[currentSlideIndex].classList.add('current-slide');
+        indicators[currentSlideIndex]?.classList.add('current-slide');
 
-        // Implementa a lógica de translação (movimento)
-        const track = document.querySelector('.carousel-track');
-        // Usa slides[0] pois a largura é sempre a mesma (100% da tela)
-        const slideWidth = slides[0].getBoundingClientRect().width; 
-        track.style.transform = 'translateX(-' + (slideWidth * currentSlideIndex) + 'px)';
+        // Move o track
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        track.style.transform = `translateX(-${slideWidth * currentSlideIndex}px)`;
     }
 
     function startAutoAdvance() {
@@ -48,14 +43,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function stopAutoAdvance() {
-        clearInterval(autoAdvanceInterval);
+        if (autoAdvanceInterval) clearInterval(autoAdvanceInterval);
     }
-    
-    if (carouselContainer) {
-        // Event Listeners
-        nextButton.addEventListener('click', () => { stopAutoAdvance(); moveToSlide(currentSlideIndex + 1); startAutoAdvance(); });
-        prevButton.addEventListener('click', () => { stopAutoAdvance(); moveToSlide(currentSlideIndex - 1); startAutoAdvance(); });
-        
+
+    if (carouselContainer && track) {
+        // Botões de navegação
+        nextButton?.addEventListener('click', () => {
+            stopAutoAdvance();
+            moveToSlide(currentSlideIndex + 1);
+            startAutoAdvance();
+        });
+
+        prevButton?.addEventListener('click', () => {
+            stopAutoAdvance();
+            moveToSlide(currentSlideIndex - 1);
+            startAutoAdvance();
+        });
+
+        // Indicadores (pontinhos)
         indicators.forEach((indicator, index) => {
             indicator.addEventListener('click', () => {
                 stopAutoAdvance();
@@ -64,17 +69,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Funcionalidade de Hover
+        // Pausar ao passar o mouse e retomar ao sair
         carouselContainer.addEventListener('mouseenter', stopAutoAdvance);
         carouselContainer.addEventListener('mouseleave', startAutoAdvance);
 
-        // Inicia e ajusta ao redimensionar
+        // Atualiza o slide no redimensionamento da tela
+        window.addEventListener('resize', () => moveToSlide(currentSlideIndex));
+
+        // Inicialização
+        moveToSlide(currentSlideIndex);
         startAutoAdvance();
-        window.addEventListener('resize', () => {
-            moveToSlide(currentSlideIndex);
-        });
-        // Garante que o primeiro slide esteja ativo no início
-        moveToSlide(currentSlideIndex); 
     }
 
 
@@ -90,11 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             const targetId = button.getAttribute('data-target');
             const carousel = document.getElementById(targetId);
-            
             if (!carousel) return;
 
             const direction = button.classList.contains('next') ? 1 : -1;
-            
             carousel.scrollBy({
                 left: scrollAmount * direction,
                 behavior: 'smooth'
@@ -106,32 +108,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // ================================================================
     // 3. LÓGICA DA BUSCA (FILTRO DE CARDS)
     // ================================================================
-    const searchInput = document.querySelector('.search-input'); 
+    const searchInput = document.querySelector('.search-input');
     const allAnimeCards = document.querySelectorAll('.anime-card');
 
-    // Função principal de filtro: LÊ data-title e data-id do HTML
     function filterAnimeCards(searchTerm) {
         const normalizedTerm = searchTerm.toLowerCase().trim();
 
         allAnimeCards.forEach(card => {
-            // Verifica se os atributos existem para evitar erros
             const cardTitle = card.getAttribute('data-title')?.toLowerCase() || '';
-            const cardId = card.getAttribute('data-id') || ''; 
+            const cardId = card.getAttribute('data-id') || '';
 
             const matchesTitle = cardTitle.includes(normalizedTerm);
             const matchesId = cardId.includes(normalizedTerm);
 
-            if (matchesTitle || matchesId || normalizedTerm === '') {
-                card.style.display = 'block'; 
-            } else {
-                card.style.display = 'none'; 
-            }
+            card.style.display = (matchesTitle || matchesId || normalizedTerm === '') ? 'block' : 'none';
         });
     }
 
     if (searchInput) {
-        // Adiciona o Event Listener para monitorar a digitação
-        searchInput.addEventListener('input', (e) => {
+        searchInput.addEventListener('input', e => {
             filterAnimeCards(e.target.value);
         });
     }
@@ -141,36 +136,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. LÓGICA DA BARRA DE BUSCA (Desktop e Mobile Toggle)
     // ================================================================
     const searchBox = document.querySelector('.search-box');
-    const searchToggleBtn = document.querySelector('.search-toggle-btn'); 
+    const searchToggleBtn = document.querySelector('.search-toggle-btn');
 
     if (searchToggleBtn && searchBox && searchInput) {
         searchToggleBtn.addEventListener('click', () => {
-            // Verifica a largura da tela
             if (window.innerWidth > 768) {
-                // Lógica Desktop: Expande/Contrai
+                // Desktop
                 searchBox.classList.toggle('active');
                 if (searchBox.classList.contains('active')) {
                     searchInput.focus();
                 } else {
-                    searchInput.value = ''; // Limpa ao recolher
-                    filterAnimeCards(''); // Mostra todos os cards novamente
+                    searchInput.value = '';
+                    filterAnimeCards('');
                 }
             } else {
-                // Lógica Mobile: Exibe/Oculta em tela cheia (usando style.display)
+                // Mobile
                 const isVisible = searchBox.style.display === 'flex';
-
-                if (!isVisible) {
-                    searchBox.style.display = 'flex'; 
-                    searchInput.focus();
-                } else {
-                    searchBox.style.display = 'none'; 
+                searchBox.style.display = isVisible ? 'none' : 'flex';
+                if (!isVisible) searchInput.focus();
+                else {
                     searchInput.value = '';
-                    filterAnimeCards(''); // Mostra todos os cards novamente
+                    filterAnimeCards('');
                 }
             }
         });
-        
-        // Oculta/Limpa a busca mobile ao redimensionar para desktop
+
+        // Redimensionamento (reseta busca mobile)
         window.addEventListener('resize', () => {
             if (window.innerWidth > 768) {
                 searchBox.style.display = 'none';
@@ -203,14 +194,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (menuToggleBtn && sidebar) {
         menuToggleBtn.addEventListener('click', openSidebar);
-        closeSidebarBtn.addEventListener('click', closeSidebar);
-        sidebarOverlay.addEventListener('click', closeSidebar);
+        closeSidebarBtn?.addEventListener('click', closeSidebar);
+        sidebarOverlay?.addEventListener('click', closeSidebar);
 
-        // Fechar a sidebar ao redimensionar (se for para desktop)
+        // Fecha sidebar se redimensionar para desktop
         window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                closeSidebar();
-            }
+            if (window.innerWidth > 768) closeSidebar();
         });
     }
 
