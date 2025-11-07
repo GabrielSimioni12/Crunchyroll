@@ -1,10 +1,9 @@
 /* ================================================================
-   VARIÁVEIS GLOBAIS E REGRAS BASE
-   (Mantive seus comentários de seção, só organizei e padronizei)
+   🎨 VARIÁVEIS GLOBAIS E BASE
 ================================================================ */
-:root{
-  --color-primary: #f47521; /* Laranja da Crunchyroll */
-  --color-bg-dark: #1a1a1a; /* Fundo principal muito escuro */
+:root {
+  --color-primary: #f47521;
+  --color-bg-dark: #1a1a1a;
   --color-text-light: #ffffff;
   --color-text-muted: #aaaaaa;
 
@@ -30,77 +29,57 @@
   --z-index-modal: 200;
 }
 
-/* Reset / box-sizing / overflow lateral */
+/* ================================================================
+   🧱 RESET & BASE
+================================================================ */
 *,
 *::before,
-*::after { box-sizing: border-box; }
+*::after {
+  box-sizing: border-box;
+}
 
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* previne scroll horizontal */
+  overflow-x: hidden;
   width: 100%;
+  font-family: Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* -----------------------------
-   Estrutura Geral do Catálogo
------------------------------ */
 body {
   background-color: var(--color-bg-dark);
   color: var(--color-text-light);
   min-height: 100vh;
   padding-top: var(--header-height);
-  margin: 0;
-  font-family: Arial, sans-serif;
   line-height: 1.5;
 }
 
-.catalog-content {
-  max-width: var(--max-content-width);
-  margin: 0 auto;
-  padding: var(--space-lg);
-}
-
-/* Títulos das Seções */
-.anime-list-section h2 {
-  font-size: 1.4rem;
-  margin: var(--space-xl) 0 var(--space-md) 0;
-  padding-left: var(--space-sm);
-  margin-left: var(--space-md);
-  margin-right: var(--space-md);
-  font-weight: var(--font-weight-bold);
-  border-left: 4px solid var(--color-primary);
-}
-
-/* -----------------------------
-    1. NAVBAR (Cabeçalho Fixo)
------------------------------ */
+/* ================================================================
+   🧭 NAVBAR
+================================================================ */
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
   height: var(--header-height);
   background-color: rgba(26, 26, 26, 0.95);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  z-index: var(--z-index-header);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
   backdrop-filter: blur(5px);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0 2rem;
+  z-index: var(--z-index-header);
 }
 
 .navbar .container {
   max-width: var(--max-content-width);
-  height: 100%;
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
@@ -110,7 +89,7 @@ body {
   letter-spacing: -1px;
 }
 
-/* Links de Navegação */
+/* Links */
 .nav-links {
   display: flex;
   gap: 1.8rem;
@@ -120,116 +99,142 @@ body {
   color: var(--color-text-muted);
   text-decoration: none;
   font-weight: var(--font-weight-regular);
-  padding: 5px 0;
   transition: var(--transition);
   font-size: 0.95rem;
+  padding: 5px 0;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
   color: var(--color-text-light);
   border-bottom: 2px solid var(--color-primary);
-  padding-bottom: 2px;
 }
 
-/* Ações do Usuário (Ícones e Botões) */
+/* Ícones / Botões */
 .user-actions {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: var(--space-sm);
-  position: relative;
   margin-left: var(--space-lg);
 }
 
-.user-actions button,
-.user-actions a {
+.user-actions a,
+.user-actions button {
   background: none;
   border: none;
   color: var(--color-text-light);
-  font-size: 1.05rem;
   cursor: pointer;
-  text-decoration: none;
-  transition: var(--transition);
   height: 32px;
   width: 32px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  transition: var(--transition);
 }
 
 .user-actions i {
   transition: color 0.25s ease, transform 0.2s ease;
 }
 
-.user-actions button:hover i,
-.user-actions a:hover i {
+.user-actions a:hover i,
+.user-actions button:hover i {
   color: var(--color-primary);
   transform: scale(1.15);
 }
 
-.menu-toggle-btn {
-  display: none; /* mostra via media queries se necessário */
+.menu-toggle-btn { display: none; }
+
+.profile-btn {
+    /* Transforma o link em um container flexível */
+    display: flex; 
+    /* Centraliza os itens verticalmente (importante!) */
+    align-items: center; 
+    /* Adiciona um pequeno espaçamento à esquerda dos ícones */
+    margin-left: 20px; 
+    /* Remove a decoração de link */
+    text-decoration: none; 
+    /* Opcional: Garante que o link não seja muito pequeno */
+    height: 100%; 
 }
 
-/* -----------------------------
-    2. BARRA DE BUSCA (Desktop)
------------------------------ */
+
+.profile-btn i.fa-user {
+    font-size: 20px; 
+    color: var(--color-text-light, #fff); 
+    /* Garante que o ícone de texto não interfira no alinhamento do avatar */
+    line-height: 1; 
+    margin-right: 5px; /* Espaço entre o ícone fas-user e o avatar, se ambos aparecerem */
+}
+
+.avatar-home-icon {
+    /* Tamanho MAIOR, como você pediu (ex: 34px) */
+    width: 45px; 
+    height: 45px;
+    /* Torna redondo */
+    border-radius: 50%; 
+    object-fit: cover; 
+    /* Borda de destaque */
+    border: 2px solid var(--color-primary, #f47521); 
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    /* Remove qualquer margem extra que possa ter sido herdada */
+    margin: 0;
+    /* Garante que o avatar seja exibido como um bloco */
+    display: block; 
+}
+
+.avatar-home-icon:hover {
+    transform: scale(1.1);
+}
+
+/* ================================================================
+   🔍 BARRA DE BUSCA
+================================================================ */
 .search-box {
   width: 0;
-  overflow: hidden;
   opacity: 0;
-  padding: 0;
-  border: 1px solid transparent;
-  transition:
-    width 0.4s ease,
-    padding 0.4s ease,
-    border-color 0.4s ease,
-    opacity 0.3s ease;
+  overflow: hidden;
   display: flex;
   align-items: center;
   background-color: transparent;
+  border: 1px solid transparent;
   border-radius: var(--radius-sm);
-  position: relative;
+  transition: width 0.4s, padding 0.4s, border-color 0.4s, opacity 0.3s;
 }
 
 .search-box.active {
   width: 180px;
   padding: 0 var(--space-sm);
-  background-color: rgba(255, 255, 255, 0.08);
+  background-color: rgba(255,255,255,0.08);
   border-color: var(--color-primary);
   opacity: 1;
-  box-shadow: 0 0 8px rgba(244, 117, 33, 0.4);
+  box-shadow: 0 0 8px rgba(244,117,33,0.4);
 }
 
 .search-input {
   background: none;
   border: none;
   color: var(--color-text-light);
-  font-size: 0.95rem;
   width: 100%;
+  font-size: 0.95rem;
   outline: none;
-  padding: 0.35rem 0;
-  transition: opacity 0.3s ease;
 }
 
 .search-box:not(.active) .search-input { opacity: 0; }
 
-/* -----------------------------
-    3. SIDEBAR (Menu Lateral Mobile)
------------------------------ */
+/* ================================================================
+   📱 SIDEBAR (MOBILE)
+================================================================ */
 .sidebar {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 280px;
-  height: 100%;
+  top: 0; left: 0;
+  width: 280px; height: 100%;
   background-color: var(--color-bg-dark);
   box-shadow: 2px 0 15px rgba(0,0,0,0.8);
-  z-index: var(--z-index-modal);
-  padding: var(--space-lg);
-  transition: transform 0.3s ease-in-out;
   transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  padding: var(--space-lg);
+  z-index: var(--z-index-modal);
   display: flex;
   flex-direction: column;
 }
@@ -238,10 +243,7 @@ body {
 
 .sidebar-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background-color: rgba(0,0,0,0.7);
   z-index: calc(var(--z-index-modal) - 1);
   display: none;
@@ -251,112 +253,86 @@ body {
 
 .close-sidebar-btn {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  background: none;
-  border: none;
+  top: 20px; right: 20px;
+  background: none; border: none;
   color: var(--color-text-light);
   font-size: 1.5rem;
   cursor: pointer;
 }
 
-.sidebar-nav-links { list-style: none; padding: 0; margin-top: var(--space-xl); flex-grow: 1; }
+.sidebar-nav-links {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-xl);
+  flex-grow: 1;
+}
 
-.sidebar-nav-links li a {
+.sidebar-nav-links a {
   display: block;
   color: var(--color-text-muted);
   padding: 15px 0;
-  font-size: 1.1rem;
-  text-decoration: none;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  transition: color 0.2s ease;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.2s;
 }
 
-.sidebar-nav-links li a:hover,
-.sidebar-nav-links li a.active { color: var(--color-primary); }
-
-.sidebar-footer { padding-top: var(--space-md); border-top: 1px solid rgba(255,255,255,0.1); }
-.sidebar-footer .btn-full-width { width: 100%; }
+.sidebar-nav-links a:hover,
+.sidebar-nav-links a.active { color: var(--color-primary); }
 
 /* ================================================================
-   🖼️ HERO CAROUSEL (CORRIGIDO & ORGANIZADO)
-   - Usei width:100% ao invés de 100vw para evitar overflow por scrollbar
-   - Garantido background-size: cover e alinhamentos
+   🖼 HERO CAROUSEL
 ================================================================ */
 .hero-carousel {
   position: relative;
-  width: 100%;              /* evita scroll horizontal causado por 100vw */
-  max-width: 100%;
-  height: 65vh;             /* altura reduzida e balanceada */
+  width: 100%;
+  height: 65vh;
   min-height: 380px;
-  overflow: hidden;
   border: 4px solid var(--color-primary);
   border-radius: 16px;
+  overflow: hidden;
   box-shadow: 0 0 15px rgba(244,117,33,0.7);
-  margin: 0 auto;
-  padding: 0;
   background-clip: padding-box;
 }
 
 .hero-carousel img {
-  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
-/* track container / track / slide: garantir 100% de altura e largura */
-.carousel-track-container {
-  position: relative;
+.carousel-track-container, .carousel-track, .carousel-slide {
   width: 100%;
   height: 100%;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 .carousel-track {
   display: flex;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
   transition: transform 0.5s ease;
-  align-items: stretch;
 }
 
 .carousel-slide {
   flex: 0 0 100%;
-  width: 100%;
-  height: 100%;
-  position: relative;
   overflow: hidden;
-  margin: 0;
-  padding: 0;
 }
 
-/* slide-content: background inline (estilo aplicado via HTML), aqui garantimos comportamento */
 .slide-content {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  position: relative;
-  background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+  background-position: center;
+  position: relative;
 }
 
-/* overlay e texto do slide */
 .slide-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,0.5);
-  z-index: 1;
 }
 
 .slide-text {
@@ -370,44 +346,13 @@ body {
 .slide-text h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  font-weight: 700;
 }
 
 .slide-text p {
   font-size: 1.1rem;
-  line-height: 1.5;
   margin-bottom: 1.5rem;
 }
 
-/* botões dentro do slide */
-.button-group { display: flex; gap: 1rem; }
-
-.btn {
-  text-decoration: none;
-  padding: 12px 25px;
-  border-radius: 25px;
-  font-weight: 700;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.btn-primary {
-  background-color: var(--color-primary);
-  color: #fff;
-  border: 2px solid var(--color-primary);
-  box-shadow: 0 4px 15px rgba(244,117,33,0.4);
-}
-
-.btn-primary:hover { background-color: #ff9347; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(244,117,33,0.6); }
-
-.btn-secondary {
-  background-color: transparent;
-  color: #fff;
-  border: 2px solid #fff;
-}
-
-.btn-secondary:hover { background-color: rgba(255,255,255,0.2); }
-
-/* Botões de navegação do carrossel */
 .carousel-button {
   position: absolute;
   top: 50%;
@@ -420,38 +365,15 @@ body {
   border-radius: 50%;
   cursor: pointer;
   transition: background 0.3s;
-  z-index: 3;
 }
 
 .carousel-button:hover { background: rgba(0,0,0,0.6); }
 .carousel-button.prev { left: 20px; }
 .carousel-button.next { right: 20px; }
 
-/* Indicadores */
-.carousel-nav {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  z-index: 3;
-}
-
-.carousel-indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(255,255,255,0.5);
-  cursor: pointer;
-}
-
-.carousel-indicator.current-slide { background: var(--color-primary); }
-
-/* -----------------------------
-    5. CARDS DE ANIME
------------------------------ */
+/* ================================================================
+   🎬 LISTAS / CARDS
+================================================================ */
 .carousel-container {
   display: flex;
   overflow-x: scroll;
@@ -461,7 +383,6 @@ body {
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  mask-image: linear-gradient(to right, transparent, black var(--space-lg), black calc(100% - var(--space-lg)), transparent);
 }
 
 .carousel-container::-webkit-scrollbar { display: none; }
@@ -471,100 +392,88 @@ body {
   width: 200px;
   text-decoration: none;
   color: var(--color-text-light);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
   scroll-snap-align: start;
-  margin-right: 16px;
 }
 
 .anime-card:hover {
   transform: scale(1.05);
-  z-index: 10;
   box-shadow: 0 10px 25px rgba(244,117,33,0.5);
 }
 
 .card-image-wrapper {
-  position: relative;
   overflow: hidden;
   border-radius: var(--radius-sm);
   margin-bottom: var(--space-sm);
-  border: 1px solid rgba(255,255,255,0.1);
 }
 
 .anime-cover {
   width: 100%;
   height: 300px;
   object-fit: cover;
-  display: block;
-  transition: filter 0.3s ease;
+  transition: filter 0.3s;
 }
 
 .anime-card:hover .anime-cover { filter: brightness(1.1); }
 
 .card-title {
   font-size: var(--font-size-base);
-  font-weight: var(--font-weight-regular);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 0 2px;
 }
 
-/* Badges */
-.premium-badge,
-.ep-count {
-  position: absolute;
-  font-size: 0.7rem;
-  padding: 4px 8px;
-  font-weight: var(--font-weight-bold);
+/* ================================================================
+   ⚙ BOTÕES GLOBAIS
+================================================================ */
+.button-group {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: 25px;
+  align-items: center;
 }
 
-.premium-badge {
-  top: 0;
-  left: 0;
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition);
+  border: 2px solid transparent;
+}
+
+.btn-primary {
   background-color: var(--color-primary);
   color: var(--color-bg-dark);
-  border-radius: 0 0 var(--radius-sm) 0;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 15px rgba(244,117,33,0.4);
 }
 
-.ep-count {
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0,0,0,0.8);
+.btn-primary:hover {
+  background-color: #ff7f32;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(244,117,33,0.6);
+}
+
+.btn-secondary {
+  background: transparent;
   color: var(--color-text-light);
-  border-radius: var(--radius-sm) 0 0 0;
+  border-color: var(--color-text-light);
 }
 
-/* Botões dos carrosséis de lista */
-.list-carousel-wrapper { position: relative; }
-
-.list-carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0,0,0,0.7);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 10px 14px;
-  cursor: pointer;
-  z-index: 10;
-  font-size: 1.2rem;
-  line-height: 1;
-  opacity: 0;
-  transition: opacity 0.3s;
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
-.list-carousel-wrapper:hover .list-carousel-btn { opacity: 1; }
-
-.list-carousel-btn.prev { left: var(--space-sm); }
-.list-carousel-btn.next { right: var(--space-sm); }
-
-/* -----------------------------
-    6. RODAPÉ (Footer)
------------------------------ */
+/* ================================================================
+   🦶 RODAPÉ
+================================================================ */
 .footer {
-  width: 100%;
   background-color: var(--color-bg-dark);
   padding: var(--space-xl) var(--space-lg);
   border-top: 1px solid rgba(255,255,255,0.05);
@@ -580,165 +489,111 @@ body {
 }
 
 .footer-column { flex: 1; min-width: 150px; }
-
 .footer-logo { font-size: 1.5rem; margin-bottom: var(--space-md); }
-
 .footer h3 {
   font-size: 1rem;
   color: var(--color-text-light);
   margin-bottom: var(--space-md);
-  font-weight: var(--font-weight-bold);
   text-transform: uppercase;
 }
-
 .footer ul { list-style: none; padding: 0; }
 .footer ul li { margin-bottom: var(--space-sm); }
-
 .footer ul li a {
   color: var(--color-text-muted);
   text-decoration: none;
-  transition: color 0.3s ease;
   font-size: 0.9rem;
+  transition: color 0.3s;
 }
-
 .footer ul li a:hover { color: var(--color-primary); }
 
-.copyright { font-size: 0.8rem; margin-bottom: var(--space-md); }
-
-.social-links a {
-  color: var(--color-text-muted);
-  font-size: 1.5rem;
-  margin-right: var(--space-md);
-  text-decoration: none;
-  transition: color 0.3s ease;
+/* === ÍCONES SOCIAIS (ESTILO ORIGINAL RESTAURADO) === */
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
 }
 
-.social-links a:hover { color: var(--color-text-light); }
+.social-links a {
+  color: var(--color-text-light);
+  font-size: 1.4rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+  color: var(--color-primary);
+  transform: scale(1.15);
+}
+
 
 /* ================================================================
-    RESPONSIVIDADE (MEDIA QUERIES)
+   📱 MEDIA QUERIES
 ================================================================ */
 @media (max-width: 1024px) {
   .hero-carousel { height: 520px; }
-  .catalog-content { padding: var(--space-lg) var(--space-md); }
-  .anime-list-section h2 { margin-left: 0; margin-right: 0; }
 }
 
 @media (max-width: 768px) {
-  .hero-carousel { height: 55vh; border-width: 2px; }
-  .catalog-content { padding: var(--space-lg) 0; }
-  .slide-text { padding-left: var(--space-md); padding-right: var(--space-md); }
-  body { padding-top: var(--header-height); }
-  .container { padding: 0 var(--space-md); }
-  .anime-list-section h2 { font-size: 1.4rem; padding-left: var(--space-md); margin-left: 0; margin-right: 0; }
-
-  /* Navbar adjustments */
-  .navbar .container { padding: 0 var(--space-md); }
   .navbar .nav-links { display: none; }
   .menu-toggle-btn { display: block; }
-  .search-toggle-btn { margin-right: var(--space-sm); }
 
-  /* Mobile search */
-  .search-box {
-    position: fixed;
-    top: var(--header-height);
-    left: 0;
-    width: 100%;
-    height: auto;
-    padding: var(--space-sm) var(--space-md);
-    background-color: var(--color-bg-dark);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
-    z-index: 99;
-    opacity: 1;
-    border-color: transparent;
-    transition: none;
-    display: none; /* controlado via JS */
+  .hero-carousel { height: 55vh; border-width: 2px; }
+
+  .slide-text {
+    padding: var(--space-md);
+    max-width: none;
   }
-  .search-box.active { width: 100%; padding: var(--space-sm) var(--space-md); box-shadow: none; }
-  .search-box .search-input { opacity: 1; padding: 10px; border: 1px solid var(--color-text-muted); border-radius: var(--radius-sm); }
 
-  /* Slide adjustments */
-  .slide-content { align-items: flex-end; padding: var(--space-md); }
-  .slide-overlay { background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, transparent 100%); }
-  .slide-text { width: 100%; margin-bottom: 20px; max-width: none; }
-  .slide-text h2 { font-size: 2rem; }
-  .slide-text p { display: -webkit-box; font-size: 1rem; margin-bottom: var(--space-md); }
   .carousel-button { display: none; }
 
-  /* Carrossel de listas */
-  .carousel-container { padding-left: var(--space-md); padding-right: var(--space-md); }
-  .anime-card { width: 120px; margin-right: var(--space-sm); }
+  .anime-card { width: 120px; }
   .anime-cover { height: 180px; }
-  .list-carousel-btn { display: none; }
 
-  /* Footer */
-  .footer-container { flex-wrap: wrap; justify-content: flex-start; }
-  .footer-column { min-width: 45%; margin-bottom: var(--space-lg); }
-  .footer-column:first-child { min-width: 100%; }
+  .footer-container { flex-wrap: wrap; }
 }
 
 @media (max-width: 480px) {
-  .footer-column { min-width: 100%; }
   .hero-carousel { height: 350px; }
-  .slide-text { padding-left: var(--space-sm); padding-right: var(--space-sm); text-align: center; }
+  .slide-text { text-align: center; }
   .slide-text h2 { font-size: 1.8rem; }
-  .slide-text .btn { width: 100%; margin: var(--space-sm) 0; }
-  .slide-content { justify-content: center; }
-  .slide-text .btn { width: 80%; margin: var(--space-sm) auto; }
-}
-
-/* -----------------------------
-   POSICIONAMENTO DOS BOTÕES NO SLIDE (HERO)
------------------------------ */
-.button-group {
-  display: flex;
-  gap: var(--space-md);
-  margin-top: 25px;
-  align-items: center;
-}
-
-/* -----------------------------
-   ESTILOS DOS BOTÕES (GLOBAIS)
------------------------------ */
-.btn {
-  display: inline-block;
-  padding: 12px 25px;
-  border-radius: 4px;
-  font-weight: 700;
-  text-decoration: none;
-  text-align: center;
-  cursor: pointer;
-  transition: var(--transition);
-  border: 2px solid transparent;
-  font-size: 1rem;
-}
-
-/* BOTÕES: primário / secundário */
-.btn-primary {
-  background-color: var(--color-primary);
-  color: var(--color-bg-dark);
-  border-color: var(--color-primary);
-  box-shadow: 0 4px 15px rgba(244,117,33,0.4);
-}
-.btn-primary:hover {
-  background-color: #ff7f32;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(244,117,33,0.6);
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: var(--color-text-light);
-  border-color: var(--color-text-light);
-}
-.btn-secondary:hover {
-  background-color: rgba(255,255,255,0.15);
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-}
-
-/* Responsividade extra para botões (<=480px) */
-@media (max-width: 480px) {
-  .button-group { flex-direction: column; width: 100%; gap: var(--space-sm); }
+  .button-group { flex-direction: column; width: 100%; }
   .button-group .btn { width: 100%; }
+  .footer-column { min-width: 100%; }
+}
+
+/* === SETAS DOS CARROSSEIS SECUNDÁRIOS (PADRÃO DO BANNER) === */
+.list-carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  color: #fff;
+  width: 45px;
+  height: 45px;
+  font-size: 1.3rem;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.list-carousel-btn:hover {
+  background: var(--color-primary);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.list-carousel-btn.prev {
+  left: 10px;
+}
+
+.list-carousel-btn.next {
+  right: 10px;
+}
+
+/* Garante que as setas fiquem bem posicionadas mesmo com overflow */
+.list-carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  padding: 0 60px; /* espaço lateral para as setas */
 }

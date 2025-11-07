@@ -204,3 +204,30 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+
+// Arquivo: ../js/home.js
+
+function loadAvatarOnHome() {
+    const avatarImg = document.getElementById('user-avatar-home');
+    const savedUrl = localStorage.getItem('chosenAvatarUrl');
+    
+    // ⚠️ ATENÇÃO: Substitua pelo caminho da sua imagem de usuário padrão
+    const defaultAvatarUrl = '../Icons/Crunchyroll logo_.jpg'; 
+
+    if (avatarImg) {
+        if (savedUrl) {
+            // Se houver URL salva, usa ela
+            avatarImg.src = savedUrl;
+        } else {
+            // Caso contrário, usa o avatar padrão
+            avatarImg.src = defaultAvatarUrl; 
+        }
+    }
+}
+
+
+// Garante que a função é executada assim que a página é carregada
+document.addEventListener('DOMContentLoaded', loadAvatarOnHome);
+
+// (Outras funções de carrossel, busca, etc., devem vir aqui)
