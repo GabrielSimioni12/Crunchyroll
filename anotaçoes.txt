@@ -1,0 +1,2 @@
+background: linear-gradient(90deg, #f47521, #ff9d4d);
+  color: #fff;

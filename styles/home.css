@@ -423,38 +423,135 @@ body {
   text-overflow: ellipsis;
 }
 
-/* === Selo Premium (dentro da imagem do anime) === */
+/* ===================== CARD DE ANIME ===================== */
+.anime-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: #fff;
+  width: 180px;
+  transition: transform 0.2s ease;
+}
+
+/* Imagem e borda */
+.anime-card .card-image-wrapper {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.15);
+  transition: all 0.25s ease-in-out;
+}
+
+.anime-card .anime-cover {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Hover */
+.anime-card:hover .card-image-wrapper {
+  border: 1.5px solid #f47521;
+  box-shadow: 0 0 12px rgba(244, 117, 33, 0.7),
+              0 0 24px rgba(244, 117, 33, 0.4);
+  transform: translateY(-3px);
+}
+
+/* ===================== Info abaixo da imagem ===================== */
+.anime-card .card-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 6px;
+  padding: 0 4px;
+}
+
+.anime-card .card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  flex: 1;
+  margin-right: 8px;
+}
+
+.anime-card .ep-count {
+  font-size: 0.85rem;
+  color: #f47521;
+  font-weight: 600;
+}
+
+/* Retirar o antigo bloco de título isolado */
+.anime-card > .card-title {
+  display: none;
+}
+
+/* === Ajuste: título e episódio na mesma linha === */
+.anime-card .card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+  padding: 6px 8px;
+  background: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Oculta o contador dentro da imagem (já aparece ao lado do título) */
+.card-image-wrapper .ep-count {
+  display: none;
+}
+
+/* Novo estilo para o contador de episódios dentro da linha */
+.card-title::after {
+  content: attr(data-ep);
+  font-size: 0.85rem;
+  color: #ff8c00;
+  margin-left: 8px;
+}
+
+
+
+/* ===================== SELINHO PREMIUM ===================== */
 .premium-badge {
   position: absolute;
   top: 8px;
   left: 8px;
-  background: linear-gradient(90deg, #f47521, #ff9d4d);
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.75rem;
-  padding: 5px 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-   opacity: 1; /* Sempre visível */
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  z-index: 10;
   display: flex;
   align-items: center;
   gap: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(4px);
+  color: #ffb700;
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 3px 8px;
+  border-radius: 8px;
+  z-index: 3;
+  transition: transform 0.2s ease;
 }
 
-.icon-crown {
-  width: 14px;
-  height: 14px;
-  color: #fff;
+/* ícone da coroa */
+.premium-badge .icon-crown {
+  width: 16px;
+  height: 16px;
+  color: #ffb700;
 }
 
-.card-image-wrapper:hover .premium-badge {
-  transform: scale(1.05);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
-  transition: all 0.3s ease;
+/* sempre visível — não depende de hover */
+.anime-card .card-image-wrapper {
+  position: relative;
 }
+
+/* remove qualquer selo antigo jogado fora do card */
+.anime-card > .premium-badge {
+  display: none !important;
+}
+
 
 
 /* ================================================================
