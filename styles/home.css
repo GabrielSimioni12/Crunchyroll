@@ -423,6 +423,40 @@ body {
   text-overflow: ellipsis;
 }
 
+/* === Selo Premium (dentro da imagem do anime) === */
+.premium-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: linear-gradient(90deg, #f47521, #ff9d4d);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 5px 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+   opacity: 1; /* Sempre visível */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.icon-crown {
+  width: 14px;
+  height: 14px;
+  color: #fff;
+}
+
+.card-image-wrapper:hover .premium-badge {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+
 /* ================================================================
    ⚙ BOTÕES GLOBAIS
 ================================================================ */
