@@ -371,6 +371,34 @@ body {
 .carousel-button.prev { left: 20px; }
 .carousel-button.next { right: 20px; }
 
+/* ======== Títulos das Categorias ======== */
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 28px;
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 18px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+.section-title i {
+  width: 30px;
+  height: 30px;
+  color: var(--color-primary);
+}
+
+
+.anime-list-section h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 👈 Gap sutil entre ícone e texto */
+  padding-left: 22px; /* 👈 Evita ficar colado na borda direita */
+}
+
+
 /* ================================================================
    🎬 LISTAS / CARDS
 ================================================================ */
