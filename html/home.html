@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Catálogo | Crunchyroll Clone</title>
+  <link rel="icon" type="image/png" href="../img/Imagem_do_WhatsApp_de_2025-10-28_à_s__21.52.03_f4a1d962-removebg-preview.png">
 
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
@@ -12,28 +13,35 @@
 </head>
 
 <body>
-  <!-- ================= HEADER ================= -->
   <header class="navbar">
     <div class="container">
-      <span class="logo">CRUNCHYROLL</span>
+      <span class="logo">
+        <img src="../img/Imagem_do_WhatsApp_de_2025-10-28_à_s__21.52.03_f4a1d962-removebg-preview.png" alt="Crunchyroll Logo" class="crunchyroll-logo-img"> CRUNCHYROLL
+      </span>
       <nav class="nav-links">
         <a href="#" class="active">Início</a>
         <a href="#">Simulcasts</a>
         <a href="#">Populares</a>
         <a href="#">Minha Lista</a>
       </nav>
-      <div class="user-actions">
-        <button class="search-toggle-btn" aria-label="Abrir busca"><i class="fas fa-search"></i></button>
-        <div class="search-box">
-          <input type="text" placeholder="Buscar animes, gêneros..." class="search-input" />
-        </div>
-        <a href="././profile.html" class="profile-btn" aria-label="Perfil do Usuário">
-          <i class="fas fa-user" id="default-profile-icon"></i>
-          <img id="user-avatar-home" src="../Icons/Icone-Usuario-Padrao.jpg" alt="Avatar do Usuário" class="avatar-home-icon" />
-        </a>
-      </div>
+     <div class="user-actions">
+  
+  <button class="search-toggle-btn" aria-label="Abrir busca"><i class="fas fa-search"></i></button>
+  <div class="search-box">
+    <input type="text" placeholder="Buscar animes, gêneros..." class="search-input" />
+  </div>
+  
+  <a href="././profile.html" class="profile-btn-default" aria-label="Perfil Padrão">
+    <i class="fas fa-user" id="default-profile-icon"></i>
+  </a>
+  
+  <a href="././profile.html" class="profile-btn-avatar" aria-label="Avatar do Usuário">
+    <img id="user-avatar-home" src="../Icons/Icone-Usuario-Padrao.jpg" alt="Avatar do Usuário" class="avatar-home-icon" />
+  </a>
+</div>
     </div>
   </header>
+</body>
 
   <!-- ================= HERO CAROUSEL ================= -->
   <section class="hero-carousel">

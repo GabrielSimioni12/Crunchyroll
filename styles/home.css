@@ -57,7 +57,7 @@ body {
 }
 
 /* ================================================================
-   🧭 NAVBAR
+    🧭 NAVBAR
 ================================================================ */
 .navbar {
   position: fixed;
@@ -82,14 +82,25 @@ body {
   align-items: center;
 }
 
+/* --- LOGO (com a imagem) --- */
 .logo {
   color: var(--color-primary);
   font-size: 1.5rem;
   font-weight: var(--font-weight-bold);
   letter-spacing: -1px;
+  
+  /* Ajustes para alinhar a imagem e o texto */
+  display: flex;
+  align-items: center;
 }
 
-/* Links */
+.crunchyroll-logo-img {
+  height: 25px; /* Ajuste a altura conforme necessário */
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+/* --- LINKS DE NAVEGAÇÃO --- */
 .nav-links {
   display: flex;
   gap: 1.8rem;
@@ -110,11 +121,12 @@ body {
   border-bottom: 2px solid var(--color-primary);
 }
 
-/* Ícones / Botões */
+/* --- ÍCONES / BOTÕES (USER ACTIONS) --- */
 .user-actions {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  /* Aumentei o gap para dar espaço entre a busca/ícone padrão e o avatar */
+  gap: 20px; 
   margin-left: var(--space-lg);
 }
 
@@ -142,49 +154,175 @@ body {
   transform: scale(1.15);
 }
 
-.menu-toggle-btn { display: none; }
-
-.profile-btn {
-    /* Transforma o link em um container flexível */
-    display: flex; 
-    /* Centraliza os itens verticalmente (importante!) */
-    align-items: center; 
-    /* Adiciona um pequeno espaçamento à esquerda dos ícones */
-    margin-left: 20px; 
-    /* Remove a decoração de link */
-    text-decoration: none; 
-    /* Opcional: Garante que o link não seja muito pequeno */
-    height: 100%; 
+/* Menu Toggle (se houver) */
+.menu-toggle-btn { 
+  display: none; 
 }
 
 
-.profile-btn i.fa-user {
-    font-size: 20px; 
-    color: var(--color-text-light, #fff); 
-    /* Garante que o ícone de texto não interfira no alinhamento do avatar */
-    line-height: 1; 
-    margin-right: 5px; /* Espaço entre o ícone fas-user e o avatar, se ambos aparecerem */
+/* 1. ÍCONE DE PERFIL PADRÃO (Próximo à lupa) */
+.profile-btn-default {
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 45px;
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.profile-btn-default i {
+  font-size: 20px;
+  color: var(--color-text-light, #fff);
+}
+
+.profile-btn-default:hover i {
+  color: var(--color-primary);
+  transform: scale(1.15);
+}
+
+
+/* 2. AVATAR DE PERFIL EM DESTAQUE (No canto) */
+.profile-btn-avatar {
+  background: none;
+  border: none;
+  cursor: pointer;
+  /* Define o tamanho do container do link igual ao tamanho do avatar */
+  height: 45px; 
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition);
+  margin: 0; 
 }
 
 .avatar-home-icon {
-    /* Tamanho MAIOR, como você pediu (ex: 34px) */
-    width: 45px; 
-    height: 45px;
-    /* Torna redondo */
-    border-radius: 50%; 
-    object-fit: cover; 
-    /* Borda de destaque */
-    border: 2px solid var(--color-primary, #f47521); 
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    /* Remove qualquer margem extra que possa ter sido herdada */
-    margin: 0;
-    /* Garante que o avatar seja exibido como um bloco */
-    display: block; 
+  /* Tamanho MAIOR e em Destaque */
+  width: 45px; 
+  height: 45px;
+  /* Torna redondo */
+  border-radius: 50%; 
+  object-fit: cover; 
+  /* Borda de destaque laranja */
+  border: 2px solid var(--color-primary, #f47521); 
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin: 0;
+  display: block; 
 }
 
 .avatar-home-icon:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+/* --- ÍCONES / BOTÕES (USER ACTIONS) --- */
+.user-actions {
+  display: flex; /* ESSENCIAL */
+  align-items: center;
+  /* Espaçamento geral menor */
+  gap: 10px; 
+  margin-left: var(--space-lg);
+}
+
+/* 1. ESTILO DO ÍCONE DE PERFIL PADRÃO */
+.profile-btn-default {
+  background: none;
+  border: none;
+  color: var(--color-text-light);
+  cursor: pointer;
+  height: 45px;
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.profile-btn-default i {
+  font-size: 20px;
+}
+
+.profile-btn-default:hover i {
+  color: var(--color-primary);
+  transform: scale(1.15);
+}
+
+/* 2. ESTILO DO AVATAR EM DESTAQUE */
+.profile-btn-avatar {
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 45px; 
+  width: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition);
+  /* ESTA MARGEM FORÇA A SEPARAÇÃO DO AVATAR EM DESTAQUE */
+  margin-left: 20px; /* Ajuste este valor para controlar a distância */
+}
+
+.avatar-home-icon {
+  width: 45px; 
+  height: 45px;
+  border-radius: 50%; 
+  object-fit: cover; 
+  border: 2px solid var(--color-primary, #f47521); 
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin: 0;
+  display: block; 
+}
+
+/* ANULAR ESTILOS ANTIGOS DO .profile-btn (se existirem) */
+.profile-btn {
+    display: none; /* Oculta o link antigo se ele persistir no HTML */
+}
+
+/* --- ÍCONES / BOTÕES (USER ACTIONS) --- */
+
+/* 1. ESTILO DO BOTÃO DE BUSCA (LUPA) */
+.search-toggle-btn {
+  /* Garante o mesmo tamanho base do link de perfil */
+  height: 32px;
+  width: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Outros estilos de .user-actions a, button já devem ser aplicados */
+}
+
+.search-toggle-btn i {
+  /* Define o mesmo tamanho da fonte do ícone de perfil padrão */
+  font-size: 18px; 
+  transition: color 0.25s ease, transform 0.2s ease;
+}
+
+.search-toggle-btn:hover i {
+  color: var(--color-primary);
+  transform: scale(1.15);
+}
+
+
+/* 2. ESTILO DO ÍCONE DE PERFIL PADRÃO */
+.profile-btn-default {
+  /* Já está definido com 32x32px e alinhamento */
+  height: 32px;
+  width: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition);
+}
+
+.profile-btn-default i {
+  /* Garante que a fonte do ícone seja a mesma da lupa */
+  font-size: 18px;
+  color: var(--color-text-light, #fff);
+  transition: color 0.25s ease, transform 0.2s ease;
 }
 
 /* ================================================================
