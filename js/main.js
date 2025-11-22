@@ -1,17 +1,11 @@
-// Simula banco de dados de usuários
-// Caso nenhuma conta exista, cria um usuário padrão:
+// Cria usuário padrão se não existir
 if (!localStorage.getItem("users")) {
-    const defaultUser = [
-        {
-            email: "admin@crunchy.com",
-            password: "123456"
-        }
-    ];
-
-    localStorage.setItem("users", JSON.stringify(defaultUser));
+    localStorage.setItem("users", JSON.stringify([
+        { email: "admin@crunchy.com", password: "123456" }
+    ]));
 }
 
-// Lógica de Login
+// Login
 const loginForm = document.getElementById("loginForm");
 
 loginForm.addEventListener("submit", function (e) {
@@ -28,9 +22,8 @@ loginForm.addEventListener("submit", function (e) {
 
     if (userFound) {
         alert("Login realizado com sucesso!");
-        window.location.href = "home.html";
+        window.location.href = "../../home.html";
     } else {
         alert("E-mail ou senha incorretos.");
     }
 });
-
