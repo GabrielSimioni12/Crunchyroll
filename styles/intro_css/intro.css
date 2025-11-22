@@ -80,6 +80,20 @@ html, body {
     transition-delay: 0.3s;
 }
 
+/* Estilo base para todos os botões */
+.btn {
+    text-decoration: none;    /* remove sublinhado */
+    display: flex;            /* centraliza conteúdo */
+    justify-content: center;  /* centraliza horizontal */
+    align-items: center;      /* centraliza vertical */
+    text-align: center;       /* garante centralização */
+    cursor: pointer;
+    font-family: inherit;
+}
+
+
+
+
 /* Botão principal */
 .btn-primary {
     padding: var(--space-sm) var(--space-lg);
