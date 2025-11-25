@@ -1,44 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8" />
-  <title>Criar Conta | Crunchyroll</title>
-  <link rel="stylesheet" href="../../styles/signup.css" />">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Conta</title>
+   <link rel="icon" type="image/png" href="../../img/Imagem_do_WhatsApp_de_2025-10-28_à_s__21.52.03_f4a1d962-removebg-preview.png">
+  <link rel="stylesheet" href="../../styles/SignUP.css">
 </head>
-
 <body>
 
   <div class="login-container">
     <div class="login-box">
+      <h2 class="logo">Criar Conta</h2>
 
-      <h1 class="logo">Criar Conta</h1>
-
-      <form id="signupForm">
+      <form id="signup-form">
 
         <div class="input-group">
-          <label for="newEmail">E-mail</label>
-          <input type="email" id="newEmail" placeholder="Digite seu e-mail" required />
+          <label for="email">E-mail</label>
+          <input type="email" id="email" placeholder="Digite seu e-mail" required>
         </div>
 
         <div class="input-group">
-          <label for="newPassword">Senha</label>
-          <input type="password" id="newPassword" placeholder="Crie uma senha" required />
+          <label for="password">Senha</label>
+          <input type="password" id="password" placeholder="Crie uma senha" required>
         </div>
 
         <button type="submit" class="btn-login">Criar Conta</button>
-
-        <p class="signup-text">
-          Já tem conta? <a href="../login/index.html">Entrar</a>
-        </p>
-
       </form>
 
+      <p class="signup-text">
+        Já tem conta? <a href="../login/index.html">Entrar</a>
+      </p>
     </div>
   </div>
 
-  <script src="../js/signup.js"></script>
+  <!-- ===========================
+      SCRIPT DE CADASTRO AQUI
+  ============================ -->
+  <script>
+    const signupForm = document.getElementById("signup-form");
+
+    signupForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const senha = document.getElementById("password").value.trim();
+
+      // Recupera lista de usuários
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+
+      // Verifica se email já existe
+      const exists = users.find(u => u.email === email);
+
+      if (exists) {
+        alert("Esse e-mail já está cadastrado!");
+        return;
+      }
+
+      // Salva novo usuário
+      users.push({ email, password: senha });
+      localStorage.setItem("users", JSON.stringify(users));
+
+      // Mantém logado
+      localStorage.setItem("userLogged", email);
+
+      alert("Conta criada com sucesso! 🚀");
+
+      // Redireciona direto para home
+      window.location.href = "../home.html";
+    });
+  </script>
 
 </body>
-
 </html>
