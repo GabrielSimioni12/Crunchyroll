@@ -203,31 +203,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-});
 
+    // ================================================================
+    // 6. LÓGICA DE CARREGAMENTO DO AVATAR NO HEADER (Integração Final)
+    // ================================================================
 
-// Arquivo: ../js/home.js
+    function loadAvatarOnHome() {
+        const avatarImg = document.getElementById('user-avatar-home');
+        // 🚨 CHAVE CORRETA: 'userAvatarUrl'
+        const savedUrl = localStorage.getItem('userAvatarUrl'); 
+        
+        // Caminho da imagem de usuário padrão (usado quando não há seleção)
+        const defaultAvatarUrl = '../Icons/Icone-Usuario-Padrao.jpg'; 
 
-function loadAvatarOnHome() {
-    const avatarImg = document.getElementById('user-avatar-home');
-    const savedUrl = localStorage.getItem('chosenAvatarUrl');
-    
-    // ⚠️ ATENÇÃO: Substitua pelo caminho da sua imagem de usuário padrão
-    const defaultAvatarUrl = '../Icons/Crunchyroll logo_.jpg'; 
-
-    if (avatarImg) {
-        if (savedUrl) {
-            // Se houver URL salva, usa ela
-            avatarImg.src = savedUrl;
-        } else {
-            // Caso contrário, usa o avatar padrão
-            avatarImg.src = defaultAvatarUrl; 
+        if (avatarImg) {
+            if (savedUrl) {
+                // Se houver URL salva, usa ela
+                avatarImg.src = savedUrl;
+            } else {
+                // Caso contrário, garante que o padrão correto está sendo exibido
+                // (Seu HTML já define isso, mas é bom ter uma fallback aqui)
+                avatarImg.src = defaultAvatarUrl; 
+            }
         }
     }
-}
+    
+    // Chama a função de carregamento do avatar ao final do DOMContentLoaded
+    loadAvatarOnHome();
 
-
-// Garante que a função é executada assim que a página é carregada
-document.addEventListener('DOMContentLoaded', loadAvatarOnHome);
-
-// (Outras funções de carrossel, busca, etc., devem vir aqui)
+});

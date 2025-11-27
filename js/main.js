@@ -1,29 +1,34 @@
-// Cria usuário padrão se não existir
-if (!localStorage.getItem("users")) {
-    localStorage.setItem("users", JSON.stringify([
-        { email: "admin@crunchy.com", password: "123456" }
-    ]));
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const loginForm = document.getElementById('loginForm');
+    
+    // A chave que armazena o avatar selecionado no profile.html
+    const AVATAR_STORAGE_KEY = 'userAvatarUrl';
 
-// Login
-const loginForm = document.getElementById("loginForm");
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Impede o envio padrão do formulário
 
-loginForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
 
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value.trim();
+            // ⚠️ LÓGICA DE VALIDAÇÃO SIMULADA:
+            // Aqui, o login é considerado bem-sucedido para qualquer entrada.
+            // Se você tiver uma lógica de validação real, insira-a aqui.
+            const email = emailInput.value.trim();
+            const password = passwordInput.value.trim();
 
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+            if (email !== '' && password !== '') {
+                
+                
+                localStorage.removeItem(AVATAR_STORAGE_KEY);
+                
+                
+                window.location.href = '../home.html'; 
 
-    const userFound = users.find(
-        user => user.email === email && user.password === password
-    );
-
-    if (userFound) {
-        alert("Login realizado com sucesso!");
-        window.location.href = "../../home.html";
-    } else {
-        alert("E-mail ou senha incorretos.");
+            } else {
+                // Mensagem de erro caso a validação falhe (se você adicionar lógica mais complexa)
+                alert('Por favor, preencha todos os campos.');
+            }
+        });
     }
 });
