@@ -1,321 +1,321 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Autor do Projeto</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autor do Projeto</title>
     <link rel="icon" type="image/png" href="../../img/Imagem_do_WhatsApp_de_2025-10-28_à_s__21.52.03_f4a1d962-removebg-preview.png">
 
-  <!-- Fonts / Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 
-  <!-- ESTILO DA PÁGINA -->
-  <style>
-    :root {
-      --orange: #f47521;
-      --bg-dark: #0e0e0e;
-      --bg-card: #1a1a1a;
-    }
+    <style>
+        :root {
+            --orange: #f47521;
+            --bg-dark: #0e0e0e;
+            --bg-card: #1a1a1a;
+        }
 
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to bottom, #0e0e0e, #161616);
-      font-family: "Lato", sans-serif;
-      color: #fff;
-    }
+        body {
+            margin: 0;
+            padding: 0;
+            /* NOVO: Impede a rolagem horizontal, eliminando o corte */
+            overflow-x: hidden; 
+            background: linear-gradient(to bottom, #0e0e0e, #161616);
+            font-family: "Lato", sans-serif;
+            color: #fff;
+        }
 
-    /* HEADER */
-    header.navbar {
-      background: rgba(0, 0, 0, 0.9);
-      padding: 18px;
-      border-bottom: 1px solid var(--orange);
-    }
+        /* HEADER */
+        header.navbar {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 18px;
+            border-bottom: 1px solid var(--orange);
+        }
 
-    .navbar .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1300px;
-      margin: auto;
-    }
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1300px;
+            margin: auto;
+        }
 
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      color: var(--orange);
-    }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--orange);
+        }
 
-    .nav-links a {
-      margin-left: 20px;
-      text-decoration: none;
-      color: #fff;
-      font-size: 17px;
-    }
+        .nav-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 17px;
+        }
 
-    .nav-links a.active {
-      color: var(--orange);
-    }
+        .nav-links a.active {
+            color: var(--orange);
+        }
 
-    .user-actions i {
-      color: var(--orange);
-      cursor: pointer;
-      margin-left: 16px;
-      font-size: 20px;
-    }
+        .user-actions i {
+            color: var(--orange);
+            cursor: pointer;
+            margin-left: 16px;
+            font-size: 20px;
+        }
 
-    /* CONTAINER PRINCIPAL */
-    .autor-container {
-      width: 100%;
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 40px;
-      background: var(--bg-card);
-      border-radius: 16px;
-      border: 2px solid var(--orange);
-      box-shadow: 0 0 20px rgba(244, 117, 33, 0.4);
-    }
+        /* CONTAINER PRINCIPAL */
+        .autor-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 40px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 2px solid var(--orange);
+            box-shadow: 0 0 20px rgba(244, 117, 33, 0.4);
+        }
 
-    /* CABEÇALHO */
-    .autor-header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+        /* CABEÇALHO */
+        .autor-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-    .autor-header h1 {
-      font-size: 34px;
-      color: var(--orange);
-    }
+        .autor-header h1 {
+            font-size: 34px;
+            color: var(--orange);
+        }
 
-    .autor-header p {
-      font-size: 18px;
-      opacity: 0.85;
-    }
+        .autor-header p {
+            font-size: 18px;
+            opacity: 0.85;
+        }
 
-    /* FOTO */
-    .autor-photo {
-      width: 160px;
-      height: 160px;
-      margin: 0 auto 20px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 3px solid var(--orange);
-      box-shadow: 0 0 15px rgba(244, 117, 33, 0.5);
-    }
+        /* FOTO */
+        .autor-photo {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--orange);
+            box-shadow: 0 0 15px rgba(244, 117, 33, 0.5);
+        }
 
-    .autor-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+        .autor-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-    /* DESCRIÇÃO */
-    .autor-description {
-      font-size: 18px;
-      line-height: 1.7;
-      text-align: center;
-      color: #ddd;
-      margin-top: 10px;
-    }
+        /* DESCRIÇÃO */
+        .autor-description {
+            font-size: 18px;
+            line-height: 1.7;
+            text-align: center;
+            color: #ddd;
+            margin-top: 10px;
+        }
 
-    /* LINKS SOCIAIS */
-    .social-links {
-      display: flex;
-      justify-content: center;
-      margin-top: 26px;
-      gap: 20px;
-    }
+        /* LINKS SOCIAIS */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 26px;
+            gap: 20px;
+        }
 
-    .social-links a {
-      font-size: 30px;
-      color: var(--orange);
-      transition: 0.2s ease;
-    }
+        .social-links a {
+            font-size: 30px;
+            color: var(--orange);
+            transition: 0.2s ease;
+        }
 
-    .social-links a:hover {
-      color: #fff;
-      transform: scale(1.15);
-      text-shadow: 0 0 10px var(--orange);
-    }
+        .social-links a:hover {
+            color: #fff;
+            transform: scale(1.15);
+            text-shadow: 0 0 10px var(--orange);
+        }
 
-    /* BOTÃO VOLTAR */
-    .back-btn {
-      display: block;
-      width: fit-content;
-      margin: 40px auto 0;
-      padding: 12px 26px;
-      background: var(--orange);
-      color: #000;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 18px;
-      border-radius: 10px;
-      transition: 0.2s ease;
-    }
+        /* BOTÃO VOLTAR */
+        .back-btn {
+            display: block;
+            width: fit-content;
+            margin: 40px auto 0;
+            padding: 12px 26px;
+            background: var(--orange);
+            color: #000;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 10px;
+            transition: 0.2s ease;
+        }
 
-    .back-btn:hover {
-      background: #ff8f42;
-      transform: scale(1.05);
-    }
+        .back-btn:hover {
+            background: #ff8f42;
+            transform: scale(1.05);
+        }
 
-    /* ================= RESPONSIVIDADE ================ */
+        /* ================= RESPONSIVIDADE ================ */
 
-    @media (max-width: 768px) {
-      .autor-container {
-        padding: 25px;
-        margin: 30px 15px;
-      }
+        @media (max-width: 768px) {
+            .autor-container {
+                padding: 25px;
+                margin: 30px 15px;
+            }
 
-      .autor-header h1 {
-        font-size: 26px;
-      }
+            .autor-header h1 {
+                font-size: 26px;
+            }
 
-      .autor-photo {
-        width: 130px;
-        height: 130px;
-      }
+            .autor-photo {
+                width: 130px;
+                height: 130px;
+            }
 
-      .autor-description {
-        font-size: 16px;
-      }
+            .autor-description {
+                font-size: 16px;
+            }
 
-      .social-links a {
-        font-size: 26px;
-      }
+            .social-links a {
+                font-size: 26px;
+            }
 
-      .back-btn {
-        font-size: 16px;
-        padding: 10px 22px;
-      }
-    }
+            .back-btn {
+                font-size: 16px;
+                padding: 10px 22px;
+            }
+        }
 
-    /* ================= RESPONSIVIDADE PARA CELULARES PEQUENOS (MOBILE FIRST) ================ */
+        /* ================= RESPONSIVIDADE PARA CELULARES PEQUENOS (MOBILE FIRST) ================ */
 
-@media (max-width: 576px) {
-  /* HEADER: Ajusta o layout para caber melhor, empilhando elementos se necessário */
-  .navbar .container {
-    flex-direction: column; /* Empilha os itens (Logo, Nav Links, User Actions) */
-    text-align: center;
-  }
+        @media (max-width: 576px) {
+            /* HEADER: Ajusta o layout para caber melhor, empilhando elementos se necessário */
+            .navbar .container {
+                flex-direction: column; /* Empilha os itens (Logo, Nav Links, User Actions) */
+                text-align: center;
+                padding: 15px; /* Garante que não toque nas bordas */
+            }
 
-  .logo {
-    margin-bottom: 15px; /* Espaçamento após o logo */
-  }
+            .logo {
+                margin-bottom: 12px;
+            }
 
-  .nav-links {
-    margin: 15px 0; /* Espaçamento acima e abaixo dos links de navegação */
-    display: flex; /* Garante que os links fiquem lado a lado ou ajustados */
-    justify-content: center;
-  }
+            .nav-links {
+                margin: 10px 0;
+            }
 
-  .nav-links a {
-    margin: 0 10px; /* Reduz o espaçamento entre os links */
-    font-size: 16px;
-  }
+            .nav-links a {
+                margin: 0 8px; /* Reduz o espaçamento entre os links */
+                font-size: 15px;
+            }
 
-  .user-actions {
-    margin-top: 15px;
-  }
-  
-  .user-actions i {
-    margin: 0 10px; /* Reduz o espaçamento entre os ícones de ação */
-  }
+            .user-actions {
+                margin-top: 10px;
+            }
+            
+            .user-actions i {
+                margin: 0 8px; /* Reduz o espaçamento entre os ícones de ação */
+            }
 
-  /* CONTAINER PRINCIPAL: Mais padding para as bordas e fonte ligeiramente menor */
-  .autor-container {
-    padding: 20px;
-    margin: 20px 10px; /* Margem menor nas laterais para usar melhor o espaço */
-    border-width: 1px; /* Borda mais fina */
-  }
+            /* CONTAINER PRINCIPAL: Mais padding para as bordas e fonte ligeiramente menor */
+            .autor-container {
+                width: 95%; /* NOVO: Garante que o container use quase toda a largura */
+                max-width: 95%; /* Garantia extra */
+                padding: 20px;
+                margin: 20px auto; /* Centraliza na tela e reduz margem vertical */
+                border-width: 1px;
+            }
 
-  .autor-header h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
+            .autor-header h1 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
 
-  .autor-header p {
-    font-size: 16px;
-  }
+            .autor-header p {
+                font-size: 16px;
+            }
 
-  .autor-photo {
-    width: 100px; /* Foto menor */
-    height: 100px;
-  }
+            .autor-photo {
+                width: 100px;
+                height: 100px;
+            }
 
-  .autor-description {
-    font-size: 15px;
-    line-height: 1.6;
-    text-align: left; /* Alinha o texto à esquerda para melhor leitura em blocos longos */
-  }
+            .autor-description {
+                font-size: 15px;
+                line-height: 1.6;
+                text-align: left; /* Melhora a leitura em blocos longos */
+            }
 
-  .social-links {
-    gap: 15px; /* Espaçamento menor entre os ícones sociais */
-  }
+            .social-links {
+                gap: 15px;
+            }
 
-  .social-links a {
-    font-size: 28px;
-  }
-  
-  .back-btn {
-    font-size: 15px;
-    padding: 10px 20px;
-  }
-}
+            .social-links a {
+                font-size: 28px;
+            }
+            
+            .back-btn {
+                font-size: 15px;
+                padding: 10px 20px;
+                width: 80%; /* Ajusta o botão para se encaixar melhor */
+                box-sizing: border-box; 
+            }
+        }
 
-  </style>
+    </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header class="navbar">
-    <div class="container">
-      <span class="logo">CRUNCHYROLL</span>
+    <header class="navbar">
+        <div class="container">
+            <span class="logo">CRUNCHYROLL</span>
 
-      <nav class="nav-links">
-        <a href="index.html">Início</a>
-        <a href="autor.html" class="active">Autor</a>
-      </nav>
+            <nav class="nav-links">
+                <a href="index.html">Início</a>
+                <a href="autor.html" class="active">Autor</a>
+            </nav>
 
-      <div class="user-actions">
-        <i class="fas fa-search"></i>
-        <i class="fas fa-user"></i>
-      </div>
-    </div>
-  </header>
+            <div class="user-actions">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </header>
 
-  <!-- CONTEÚDO -->
-  <main class="autor-container">
+    <main class="autor-container">
 
-    <div class="autor-header">
-      <h1>👨‍💻 Desenvolvedor do Projeto</h1>
-      <p>Saiba mais sobre quem criou este projeto inspirado na Crunchyroll.</p>
-    </div>
+        <div class="autor-header">
+            <h1>👨‍💻 Desenvolvedor do Projeto</h1>
+            <p>Saiba mais sobre quem criou este projeto inspirado na Crunchyroll.</p>
+        </div>
 
-    <div class="autor-photo">
-      <img src="../../img/WhatsApp Image 2025-11-15 at 12.52.09.jpeg" alt="Foto do Autor">
-    </div>
+        <div class="autor-photo">
+            <img src="../../img/WhatsApp Image 2025-11-15 at 12.52.09.jpeg" alt="Foto do Autor">
+        </div>
 
-    <div class="autor-description">
-      Olá! Meu nome é <strong>Gabriel Simioni</strong>, desenvolvedor responsável por este projeto inspirado no design
-      da Crunchyroll.
-      <br><br>
-      Sou apaixonado por tecnologia, animes e desenvolvimento web, sempre buscando evoluir minhas habilidades em Front-End
-      e Back-End com Python.
-      <br><br>
-      Este projeto foi criado com foco em estudo, criatividade e evolução contínua.
-    </div>
+        <div class="autor-description">
+            Olá! Meu nome é <strong>Gabriel Simioni</strong>, desenvolvedor responsável por este projeto inspirado no design
+            da Crunchyroll.
+            <br><br>
+            Sou apaixonado por tecnologia, animes e desenvolvimento web, sempre buscando evoluir minhas habilidades em Front-End
+            e Back-End com Python.
+            <br><br>
+            Este projeto foi criado com foco em estudo, criatividade e evolução contínua.
+        </div>
 
-    <div class="social-links">
-      <a href="https://github.com/GabrielSimioni12 " target="_blank"><i class="fa-brands fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/gabrielsimioni22" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-    </div>
+        <div class="social-links">
+            <a href="https://github.com/GabrielSimioni12 " target="_blank"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/gabrielsimioni22" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
 
-    <!-- BOTÃO DE VOLTAR -->
-    <a href="index.html" class="back-btn">⬅ Voltar ao Início</a>
+        <a href="index.html" class="back-btn">⬅ Voltar ao Início</a>
 
-  </main>
+    </main>
 
 </body>
 </html>

@@ -1,23 +1,27 @@
+/* ================= AJUSTES ESSENCIAIS PARA CORTE/OVERFLOW ================ */
+
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: hidden;
+    /* MANTIDO: Apenas a remoção da rolagem horizontal indesejada */
+    overflow-x: hidden; 
 }
 
 .hero-section {
     height: 100vh;
-    width: 100vw;
+    /* MUDANÇA CHAVE: Usar 100% (do pai) em vez de 100vw para evitar o corte em dispositivos móveis */
+    width: 100%; 
     display: flex;
     justify-content: center;
     align-items: flex-start;
 
-    /* Ajuste fino para enquadrar melhor a imagem */
+    /* Estilos de Fundo */
     background-image: url('../../img/Imagem\ do\ WhatsApp\ de\ 2025-10-28\ à\(s\)\ 21.39.53_ecc3968e.jpg');
-    background-size: cover;
-    background-position: center 30%; /* “Sobe” um pouco o enquadramento */
+    background-size: cover; /* Crucial para responsividade da imagem de fundo */
+    background-position: center 30%; 
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Mantém a imagem fixa no fundo */
+    background-attachment: fixed;
     position: relative;
     overflow: hidden;
 }
@@ -43,6 +47,9 @@ html, body {
     animation: fadeInSlideUp 0.8s ease-out forwards;
     animation-delay: 0.5s;
 }
+
+/* ... (O resto dos seus estilos para .main-logo, .tagline, .button-group, etc.) ... */
+
 
 .main-logo {
     font-size: 3rem;
@@ -82,17 +89,14 @@ html, body {
 
 /* Estilo base para todos os botões */
 .btn {
-    text-decoration: none;    /* remove sublinhado */
-    display: flex;            /* centraliza conteúdo */
-    justify-content: center;  /* centraliza horizontal */
-    align-items: center;      /* centraliza vertical */
-    text-align: center;       /* garante centralização */
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     cursor: pointer;
     font-family: inherit;
 }
-
-
-
 
 /* Botão principal */
 .btn-primary {
@@ -184,26 +188,20 @@ html, body {
     }
 }
 
-/* Responsividade */
-@media (max-width: 600px) {
-    .hero-section {
-        padding-top: 10vh;
-        background-position: center 40%;
-    }
-    .main-logo {
-        font-size: 2.2rem;
-    }
-    .tagline {
-        font-size: var(--font-size-base);
-    }
-    .btn-primary {
-        width: 80%;
-        min-width: 0;
-    }
-}
+/* ================= RESPONSIVIDADE ================ */
 
-/* Ajustes para telas menores (celular) */
 @media (max-width: 768px) {
+    /* Ajustes Gerais para Telas Médias e Pequenas */
+    .hero-content {
+        margin-top: 30vh; /* Sobe o conteúdo */
+        padding: var(--space-md);
+    }
+
+    .logo-text {
+        font-size: 2.5rem;
+    }
+    
+    /* Outros blocos de layout que usam .flex, etc. */
     .flex {
         display: flex;
         flex-direction: column;
@@ -222,5 +220,44 @@ html, body {
     button, a.btn {
         width: 100%;
         text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    /* Ajustes Finos para Celulares */
+    .hero-section {
+        background-position: center 40%; /* Mantém o ajuste para enquadramento da imagem de fundo */
+    }
+    
+    .hero-content {
+        margin-top: 25vh; /* Sobe ainda mais em telas menores */
+        padding: var(--space-sm);
+    }
+    
+    .logo-text {
+        font-size: 2.2rem;
+    }
+    
+    .logo-icon {
+        width: 35px; /* Ícone menor */
+        margin-right: var(--space-xs);
+    }
+    
+    .tagline {
+        font-size: var(--font-size-base);
+    }
+    
+    .btn-primary {
+        width: 90%; /* Ajusta o botão principal para 90% da largura */
+        min-width: unset; /* Remove o min-width fixo */
+    }
+    
+    .btn-secondary {
+        width: 90%; /* Ajusta o botão secundário para 90% da largura */
+        margin-top: 10px;
+    }
+    
+    .button-group {
+        width: 100%; /* Garante que o grupo centralize os botões de 90% */
     }
 }
