@@ -201,3 +201,26 @@ html, body {
         min-width: 0;
     }
 }
+
+/* Ajustes para telas menores (celular) */
+@media (max-width: 768px) {
+    .flex {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    .text {
+        font-size: 1rem;
+    }
+
+    button, a.btn {
+        width: 100%;
+        text-align: center;
+    }
+}

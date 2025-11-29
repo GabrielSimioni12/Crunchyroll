@@ -190,6 +190,79 @@
       }
     }
 
+    /* ================= RESPONSIVIDADE PARA CELULARES PEQUENOS (MOBILE FIRST) ================ */
+
+@media (max-width: 576px) {
+  /* HEADER: Ajusta o layout para caber melhor, empilhando elementos se necessário */
+  .navbar .container {
+    flex-direction: column; /* Empilha os itens (Logo, Nav Links, User Actions) */
+    text-align: center;
+  }
+
+  .logo {
+    margin-bottom: 15px; /* Espaçamento após o logo */
+  }
+
+  .nav-links {
+    margin: 15px 0; /* Espaçamento acima e abaixo dos links de navegação */
+    display: flex; /* Garante que os links fiquem lado a lado ou ajustados */
+    justify-content: center;
+  }
+
+  .nav-links a {
+    margin: 0 10px; /* Reduz o espaçamento entre os links */
+    font-size: 16px;
+  }
+
+  .user-actions {
+    margin-top: 15px;
+  }
+  
+  .user-actions i {
+    margin: 0 10px; /* Reduz o espaçamento entre os ícones de ação */
+  }
+
+  /* CONTAINER PRINCIPAL: Mais padding para as bordas e fonte ligeiramente menor */
+  .autor-container {
+    padding: 20px;
+    margin: 20px 10px; /* Margem menor nas laterais para usar melhor o espaço */
+    border-width: 1px; /* Borda mais fina */
+  }
+
+  .autor-header h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .autor-header p {
+    font-size: 16px;
+  }
+
+  .autor-photo {
+    width: 100px; /* Foto menor */
+    height: 100px;
+  }
+
+  .autor-description {
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: left; /* Alinha o texto à esquerda para melhor leitura em blocos longos */
+  }
+
+  .social-links {
+    gap: 15px; /* Espaçamento menor entre os ícones sociais */
+  }
+
+  .social-links a {
+    font-size: 28px;
+  }
+  
+  .back-btn {
+    font-size: 15px;
+    padding: 10px 20px;
+  }
+}
+
   </style>
 </head>
 
